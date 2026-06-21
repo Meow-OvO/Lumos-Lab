@@ -7,6 +7,6 @@ export default defineNuxtConfig({
     modules: ["@element-plus/nuxt", "@pinia/nuxt", "pinia-plugin-persistedstate/nuxt", "@nuxtjs/tailwindcss", "@hypernym/nuxt-anime", "@nuxt/icon"],
     devServer: { port: 4060 },
     elementPlus: { icon: "", defaultLocale: "zh-cn", globalConfig: { size: "default" } },
-    app: { head: { title: "Lumos Lab" } },
+    app: { head: { title: "Lumos Lab" }, baseURL: "/Lumos-Lab/" },
     css: ["@/assets/style/index.css"]
 })
