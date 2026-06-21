@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "tailwindCSS.experimental.configFile": ".nuxt/tailwind/postcss.mjs",
+    "terminal.integrated.fontFamily": "Cascadia Mono"
+}
