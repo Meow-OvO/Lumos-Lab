@@ -123,7 +123,11 @@ const filteredList = computed(() => {
                             本应用的任何问题 , 或者希望在本应用中看到任何内容 , 可以提 issue 给我 , 也许不一定能及时实现 , 但每一条我都会认真查阅 .
                         </p>
 
-                        <p class="mb-1"><strong>代码仓库: </strong>（请上传到 GitHub 后在此处填写仓库地址）</p>
+                        <p class="mb-1">
+                            <strong>代码仓库: </strong>
+
+                            <a href="https://github.com/Meow-OvO/Lumos-Lab" class="underline" target="blank">https://github.com/Meow-OvO/Lumos-Lab</a>
+                        </p>
                     </div>
                 </el-card>
             </el-col>
