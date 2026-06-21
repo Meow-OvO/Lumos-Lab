@@ -1,0 +1,121 @@
+[
+    {
+        "packageName": "nuxt",
+        "displayName": "Nuxt 框架",
+        "documentUrl": "https://nuxt.com/docs/4.x/getting-started/introduction",
+        "icon": "logos:nuxt-icon",
+        "color": null
+    },
+    {
+        "packageName": "vue",
+        "displayName": "Vue 核心框架",
+        "documentUrl": "https://cn.vuejs.org/",
+        "icon": "logos:vue",
+        "color": null
+    },
+    {
+        "packageName": "vue-router",
+        "displayName": "Vue 路由",
+        "documentUrl": "https://router.vuejs.org/zh/",
+        "icon": "logos:vue",
+        "color": null
+    },
+    {
+        "packageName": "@element-plus/nuxt",
+        "displayName": "Element Plus Nuxt 集成模块",
+        "documentUrl": "https://nuxtjs.org.cn/modules/element-plus",
+        "icon": "logos:element",
+        "color": null
+    },
+    {
+        "packageName": "element-plus",
+        "displayName": "Element Plus UI 组件库",
+        "documentUrl": "https://element-plus.org/zh-CN/",
+        "icon": "logos:element",
+        "color": null
+    },
+    {
+        "packageName": "@nuxt/icon",
+        "displayName": "Nuxt 图标模块",
+        "documentUrl": "https://nuxt.org.cn/modules/icon",
+        "icon": "logos:nuxt-icon",
+        "color": null
+    },
+    {
+        "packageName": "@nuxtjs/tailwindcss",
+        "displayName": "Nuxt Tailwind CSS 集成模块",
+        "documentUrl": "https://tailwindcss.nuxtjs.org/getting-started/module-options",
+        "icon": "logos:tailwindcss-icon",
+        "color": null
+    },
+    {
+        "packageName": "tailwindcss",
+        "displayName": "Tailwind CSS 框架",
+        "documentUrl": "https://www.tailwindcss.cn/docs/installation",
+        "icon": "logos:tailwindcss-icon",
+        "color": null
+    },
+    {
+        "packageName": "@pinia/nuxt",
+        "displayName": "Pinia Nuxt 集成模块",
+        "documentUrl": "https://pinia.vuejs.org/zh/ssr/nuxt.html",
+        "icon": "logos:pinia",
+        "color": null
+    },
+    {
+        "packageName": "pinia",
+        "displayName": "Pinia 状态管理",
+        "documentUrl": "https://pinia.vuejs.org/zh/",
+        "icon": "logos:pinia",
+        "color": null
+    },
+    {
+        "packageName": "pinia-plugin-persistedstate",
+        "displayName": "Pinia 持久化插件",
+        "documentUrl": "https://www.npmjs.com/package/pinia-plugin-persistedstate",
+        "icon": "logos:pinia",
+        "color": null
+    },
+    {
+        "packageName": "dayjs",
+        "displayName": "Day.js 日期处理库",
+        "documentUrl": "https://day.js.org/zh-CN/",
+        "icon": "logos:dayjs",
+        "color": null
+    },
+    {
+        "packageName": "echarts",
+        "displayName": "ECharts 数据可视化图表库",
+        "documentUrl": "https://echarts.org.cn/handbook/zh/",
+        "icon": "simple-icons:apacheecharts",
+        "color": "#AA344D"
+    },
+    {
+        "packageName": "lodash",
+        "displayName": "Lodash 工具函数库",
+        "documentUrl": "https://lodash.com/docs/",
+        "icon": "devicon:lodash",
+        "color": "#3492FF"
+    },
+    {
+        "packageName": "@hypernym/nuxt-anime",
+        "displayName": "Anime.js Nuxt 集成模块",
+        "documentUrl": "https://nuxt.com/modules/nuxt-anime",
+        "icon": "simple-icons:animejs",
+        "color": "#FF6B6B"
+    },
+    {
+        "packageName": "animejs",
+        "displayName": "Anime.js 动画库",
+        "documentUrl": "https://animejs.com/documentation/",
+        "icon": "simple-icons:animejs",
+        "color": "#FF6B6B"
+    },
+    {
+        "packageName": "vue-draggable-plus",
+        "displayName": "Vue 拖拽组件",
+        "documentUrl": "https://vue-draggable-plus.pages.dev/",
+        "icon": "logos:vue",
+        "color": null
+    }
+]
