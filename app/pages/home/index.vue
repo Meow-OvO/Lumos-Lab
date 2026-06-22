@@ -66,7 +66,7 @@ const env = process.env.NODE_ENV
 
                     <el-input v-model="libs.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
 
-                    <el-scrollbar height="calc(100vh - 232px)">
+                    <el-scrollbar height="calc(100vh - 228px)">
                         <template v-for="(item, index) in filteredList">
                             <el-divider v-if="index" :style="{ margin: '10px 0' }"></el-divider>
 

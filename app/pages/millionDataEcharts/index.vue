@@ -267,7 +267,7 @@ onBeforeUnmount(() => {
                 <el-card>
                     <el-custom-card-title>数据</el-custom-card-title>
 
-                    <el-table :data="currentPageData" border height="calc(100vh - 699px)">
+                    <el-table :data="currentPageData" border height="calc(100vh - 691px)">
                         <el-table-column prop="date" label="Date" />
                         <el-table-column prop="value" label="Value" />
                     </el-table>
@@ -325,12 +325,12 @@ onBeforeUnmount(() => {
 <style scoped>
 .page-about {
     width: 100%;
-    height: calc((100vh - 392px) * 2 / 8);
+    height: calc((100vh - 380px) * 2 / 8);
 }
 
 .million-line-graph,
 .million-line-lttb-graph {
     width: 100%;
-    height: calc((100vh - 392px) * 3 / 8);
+    height: calc((100vh - 380px) * 3 / 8);
 }
 </style>
