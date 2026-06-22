@@ -30,7 +30,9 @@ const copyCommitType = async (commitType: commitTypeItem) => {
         await navigator.clipboard.writeText(commitType.type)
         commitType.status = "clicked"
     } catch (error) {
+        console.error(error)
         commitType.status = "error"
+        ElMessage({ type: "error", message: "复制失败了, 可能是因为 clipboard 不支持 https 和 localhost 以外的方式调用" })
     }
 
     setTimeout(() => (commitType.status = "normal"), 2000)
