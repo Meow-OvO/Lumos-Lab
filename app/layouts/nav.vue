@@ -24,7 +24,7 @@ const navTabStore = useNavTabStore()
 
                     <el-menu-item index="/millionDataEcharts">
                         <el-icon><PieChart /></el-icon>
-                        <span>百万数据echarts渲染</span>
+                        <span>百万级数据图形渲染</span>
                     </el-menu-item>
 
                     <!-- <el-menu-item index="/environmentInfo">
