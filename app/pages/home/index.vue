@@ -70,7 +70,7 @@ const env = process.env.NODE_ENV
                         <template v-for="(item, index) in filteredList">
                             <el-divider v-if="index" :style="{ margin: '10px 0' }"></el-divider>
 
-                            <el-link :underline="false" :href="item.documentUrl" target="_blank">
+                            <el-link underline="never" :href="item.documentUrl" target="_blank">
                                 <div class="libs-item-grid">
                                     <Icon
                                         :name="item.icon"
