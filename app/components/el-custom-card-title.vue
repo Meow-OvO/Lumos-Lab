@@ -9,7 +9,7 @@ const props = defineProps({
     <el-row align="middle" class="mb-[14px]">
         <div class="title-bar"></div>
 
-        <span class="flex-1 font-bold overflow-hidden text-ellipsis text-nowrap">
+        <span class="text-[16px] flex-1 font-bold overflow-hidden text-ellipsis text-nowrap">
             <slot name="default"></slot>
         </span>
     </el-row>
