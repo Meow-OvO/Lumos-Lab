@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import dayjs from "dayjs"
+
 export default defineNuxtConfig({
     compatibilityDate: "2026-06-11",
     ssr: false,
@@ -8,5 +10,6 @@ export default defineNuxtConfig({
     devServer: { port: 4060 },
     elementPlus: { icon: "", defaultLocale: "zh-cn", globalConfig: { size: "default" } },
     app: { head: { title: "Lumos Lab" }, baseURL: "/Lumos-Lab/" },
-    css: ["@/assets/style/index.css"]
+    css: ["@/assets/style/index.css"],
+    runtimeConfig: { public: { buildTime: dayjs().format("YYYY-MM-DD HH:mm:ss") } }
 })

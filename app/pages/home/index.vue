@@ -1,4 +1,4 @@
-<script setup>
+<script setup type="ts">
 import libsJson from "./libs.json"
 
 const libs = reactive({
@@ -22,6 +22,10 @@ const filteredList = computed(() => {
         })
     })
 })
+
+const config = useRuntimeConfig()
+
+const env = process.env.NODE_ENV
 </script>
 
 <template>
@@ -116,7 +120,7 @@ const filteredList = computed(() => {
             </el-col>
 
             <el-col :span="6">
-                <el-card>
+                <el-card class="mb-5">
                     <el-custom-card-title>联系方式</el-custom-card-title>
 
                     <div class="text-[14px]">
@@ -128,6 +132,24 @@ const filteredList = computed(() => {
                             <strong>代码仓库: </strong>
 
                             <a href="https://github.com/Meow-OvO/Lumos-Lab" class="underline" target="blank">https://github.com/Meow-OvO/Lumos-Lab</a>
+                        </p>
+                    </div>
+                </el-card>
+
+                <el-card>
+                    <el-custom-card-title>关于应用</el-custom-card-title>
+
+                    <div class="text-[14px]">
+                        <p class="mb-2">
+                            🕗
+                            <strong>构建时间: </strong>
+                            {{ config.public.buildTime }}
+                        </p>
+
+                        <p class="mb-2">
+                            🌳
+                            <strong>当前环境: </strong>
+                            {{ env }}
                         </p>
                     </div>
                 </el-card>
