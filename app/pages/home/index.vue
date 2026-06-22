@@ -107,6 +107,7 @@ const env = process.env.NODE_ENV
                     <el-tag type="primary" effect="dark">导航layout</el-tag>
                     <el-tag type="primary" effect="dark">github page部署</el-tag>
                     <el-tag type="primary" effect="dark">百万级数据 Echarts</el-tag>
+                    <el-tag type="primary" effect="dark">构建时间打标</el-tag>
                 </el-card>
 
                 <el-card class="mb-5">
