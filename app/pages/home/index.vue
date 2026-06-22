@@ -101,6 +101,7 @@ const filteredList = computed(() => {
 
                     <el-tag type="primary" effect="dark">手动路由行为</el-tag>
                     <el-tag type="primary" effect="dark">导航layout</el-tag>
+                    <el-tag type="primary" effect="dark">github page部署</el-tag>
                     <el-tag type="primary" effect="dark">百万级数据 Echarts</el-tag>
                 </el-card>
 
