@@ -108,15 +108,15 @@
         "packageName": "@hypernym/nuxt-anime",
         "displayName": "Anime.js Nuxt 集成模块",
         "documentUrl": "https://nuxt.com/modules/nuxt-anime",
-        "icon": "simple-icons:animejs",
-        "color": "#FF6B6B"
+        "icon": "logos:nuxt-icon",
+        "color": null
     },
     {
         "packageName": "animejs",
         "displayName": "Anime.js 动画库",
         "documentUrl": "https://animejs.com/documentation/",
-        "icon": "simple-icons:animejs",
-        "color": "#FF6B6B"
+        "icon": "simple-icons:animedotjs",
+        "color": null
     },
     {
         "packageName": "vue-draggable-plus",
