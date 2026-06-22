@@ -22,6 +22,11 @@ const navTabStore = useNavTabStore()
                         <span>主页</span>
                     </el-menu-item>
 
+                    <el-menu-item index="/devNotes">
+                        <el-icon><Icon name="material-symbols:sticky-note-2-outline-rounded" /></el-icon>
+                        <span>开发手记</span>
+                    </el-menu-item>
+
                     <el-menu-item index="/millionDataEcharts">
                         <el-icon><PieChart /></el-icon>
                         <span>百万级数据图形渲染</span>
