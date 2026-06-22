@@ -6,10 +6,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <el-row align="middle" class="mb-[18px]">
+    <el-row align="middle" class="mb-[14px]">
         <div class="title-bar"></div>
 
-        <span class="font-bold">
+        <span class="flex-1 font-bold overflow-hidden text-ellipsis text-nowrap">
             <slot name="default"></slot>
         </span>
     </el-row>
