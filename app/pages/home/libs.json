@@ -42,6 +42,13 @@
         "color": null
     },
     {
+        "packageName": "iconify.design",
+        "displayName": "iconify.design",
+        "documentUrl": "https://icon-sets.iconify.design/",
+        "icon": "simple-icons:iconify",
+        "color": null
+    },
+    {
         "packageName": "@nuxtjs/tailwindcss",
         "displayName": "Nuxt Tailwind CSS 集成模块",
         "documentUrl": "https://tailwindcss.nuxtjs.org/getting-started/module-options",
