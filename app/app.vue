@@ -2,7 +2,7 @@
     <!-- <NuxtRouteAnnouncer /> -->
     <!-- <NuxtWelcome /> -->
     <NuxtLayout :name="layoutName">
-        <NuxtPage />
+        <NuxtPage keepalive />
     </NuxtLayout>
 </template>
 
