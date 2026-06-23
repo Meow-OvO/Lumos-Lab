@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { DataPoint } from "./types.d.ts"
 
-import millionDataHandlerWorker from "./millionDataHandlerWorker.ts?worker"
+import millionDataHandlerWorker from "./millionDataHandler.worker.ts?worker"
 import * as echarts from "echarts"
 import dayjs from "dayjs"
 
