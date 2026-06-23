@@ -27,6 +27,11 @@ const navTabStore = useNavTabStore()
                         <span>开发手记</span>
                     </el-menu-item>
 
+                    <el-menu-item index="/report">
+                        <el-icon><Icon name="material-symbols-light:table-outline-sharp" /></el-icon>
+                        <span>数据报表</span>
+                    </el-menu-item>
+
                     <el-menu-item index="/millionDataEcharts">
                         <el-icon><Icon name="mdi:chart-line" /></el-icon>
                         <span>百万级数据图形渲染</span>
