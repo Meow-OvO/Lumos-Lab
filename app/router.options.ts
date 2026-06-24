@@ -1,13 +1,18 @@
 import type { RouterConfig } from "@nuxt/schema"
 
+const routesConfig = [
+    { path: "/", component: () => import("@/views/index.vue") },
+    { path: "/home", meta: { layout: "nav" }, component: () => import("@/views/home/index.vue") },
+    { path: "/about", meta: { layout: "nav" }, component: () => import("@/views/about.vue") },
+    { path: "/devNotes", meta: { layout: "nav" }, component: () => import("@/views/devNotes/index.vue") },
+    { path: "/report", meta: { layout: "nav" }, component: () => import("@/views/report/index.vue") },
+    { path: "/millionDataEcharts", meta: { layout: "nav" }, component: () => import("@/views/millionDataEcharts/index.vue") }
+    // { name: "environmentInfo", path: "/environmentInfo", meta: { layout: "nav" }, component: () => import("@/views/environmentInfo/index.vue") }
+]
+
 export default <RouterConfig>{
-    routes: _routes => [
-        { path: "/", component: () => import("@/pages/index.vue") },
-        { path: "/home", meta: { layout: "nav" }, component: () => import("@/pages/home/index.vue") },
-        { path: "/about", meta: { layout: "nav" }, component: () => import("@/pages/about.vue") },
-        { path: "/devNotes", meta: { layout: "nav" }, component: () => import("@/pages/devNotes/index.vue") },
-        { path: "/report", meta: { layout: "nav" }, component: () => import("@/pages/report/index.vue") },
-        { name: "millionDataEcharts", path: "/millionDataEcharts", meta: { layout: "nav" }, component: () => import("@/pages/millionDataEcharts/index.vue") }
-        // { name: "environmentInfo", path: "/environmentInfo", meta: { layout: "nav" }, component: () => import("@/pages/environmentInfo/index.vue") }
-    ]
+    routes: _routes => {
+        console.log(_routes)
+        return routesConfig
+    }
 }

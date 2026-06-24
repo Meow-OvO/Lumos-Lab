@@ -55,7 +55,7 @@ const startWorker = () => {
 
     loading.value = true
 
-    totalCount.value = _.random(1000000, 2000000)
+    totalCount.value = _.random(100000, 200000)
 
     worker.postMessage({ type: "start", total: totalCount.value })
 }
