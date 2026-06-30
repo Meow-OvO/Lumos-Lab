@@ -12,5 +12,9 @@ export default defineNuxtConfig({
     app: { head: { title: "Lumos Lab" }, baseURL: "/Lumos-Lab/" },
     css: ["@/assets/style/index.css"],
     runtimeConfig: { public: { buildTime: dayjs().format("YYYY-MM-DD HH:mm:ss") } },
-    tailwindcss: { config: { content: ["./app/views/**/*.{vue,js,ts}"] } }
+    tailwindcss: { config: { content: ["./app/views/**/*.{vue,js,ts}"] } },
+
+    vite: {
+        optimizeDeps: { include: ["@faker-js/faker", "dayjs", "dayjs/plugin/*.js", "lodash-unified"] }
+    }
 })
