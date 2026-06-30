@@ -117,6 +117,7 @@ const env = process.env.NODE_ENV
                     <el-tag type="primary" effect="dark">SPA的页面手动刷新</el-tag>
                     <el-tag type="primary" effect="dark">GIS</el-tag>
                     <el-tag type="primary" effect="dark">国内外地图调用</el-tag>
+                    <el-tag type="primary" effect="dark">国内访问地址</el-tag>
                 </el-card>
             </el-col>
 
