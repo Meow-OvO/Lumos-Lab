@@ -55,7 +55,7 @@ const startWorker = () => {
 
     loading.value = true
 
-    totalCount.value = _.random(100000, 200000)
+    totalCount.value = _.random(10000, 20000)
 
     worker.postMessage({ type: "start", total: totalCount.value })
 }
@@ -81,7 +81,8 @@ onUnmounted(() => {
                 <br />
                 <span v-if="progress"> 正在生成数据, 已加载 {{ progress }} / {{ totalCount }} 条 </span>
             </el-alert>
-
+            <!-- style="width: 100%" -->
+            <!-- :fit="false" -->
             <div class="mt-4 relative overflow-hidden w-full" :style="{ flex: 1 }">
                 <el-table
                     v-loading="loading"
@@ -92,24 +93,57 @@ onUnmounted(() => {
                     height="100%"
                     show-overflow-tooltip
                 >
-                    <el-table-column prop="id" label="ID" width="100" />
-                    <el-table-column prop="name" label="姓名" />
-                    <el-table-column prop="email" label="邮箱" />
-                    <el-table-column prop="phone" label="手机号" />
-                    <el-table-column prop="company" label="公司" />
-                    <el-table-column prop="department" label="部门" />
-                    <el-table-column prop="position" label="职位" />
-                    <el-table-column prop="salary" label="薪资">
+                    <el-custom-table-column prop="id" label="ID" width="100" />
+                    <el-custom-table-column prop="name" label="姓名" />
+                    <el-custom-table-column prop="email" label="邮箱" />
+                    <el-custom-table-column prop="phone" label="手机号" />
+                    <el-custom-table-column prop="department" label="部门" />
+                    <el-custom-table-column prop="position" label="职位" />
+
+                    <el-custom-table-column label="季度绩效">
+                        <el-custom-table-column prop="performanceSeason_1" label="一季度" />
+                        <el-custom-table-column prop="performanceSeason_2" label="二季度" />
+                        <el-custom-table-column prop="performanceSeason_3" label="三季度" />
+                        <el-custom-table-column prop="performanceSeason_4" label="四季度" />
+                    </el-custom-table-column>
+
+                    <el-custom-table-column prop="salary" label="薪资">
                         <template #default="{ row }">¥{{ row.salary.toLocaleString() }}</template>
-                    </el-table-column>
-                    <el-table-column prop="status" label="状态">
+                    </el-custom-table-column>
+                    <el-custom-table-column prop="status" label="状态" width="80">
                         <template #default="{ row }">
                             <el-tag :type="row.status === '在职' ? 'success' : 'danger'">
                                 {{ row.status }}
                             </el-tag>
                         </template>
-                    </el-table-column>
-                    <el-table-column prop="createdAt" label="入职日期" />
+                    </el-custom-table-column>
+                    <el-custom-table-column prop="createdAt" label="入职日期" />
+                    <el-custom-table-column label="操作" width="140" fixed="right">
+                        <el-button type="text">
+                            <el-tooltip effect="dark" content="详情" placement="bottom">
+                                <el-icon><View /></el-icon>
+                            </el-tooltip>
+                            <!-- <span>详情</span> -->
+                        </el-button>
+                        <el-button type="text">
+                            <el-tooltip effect="dark" content="编辑" placement="bottom">
+                                <el-icon><Edit /></el-icon>
+                            </el-tooltip>
+                            <!-- <span>编辑</span> -->
+                        </el-button>
+                        <el-button type="text">
+                            <el-tooltip effect="dark" content="删除" placement="bottom">
+                                <el-icon><Delete /></el-icon>
+                            </el-tooltip>
+                            <!-- <span>删除</span> -->
+                        </el-button>
+                        <el-button type="text">
+                            <el-tooltip effect="dark" content="重置密码" placement="bottom">
+                                <el-icon><Unlock /></el-icon>
+                            </el-tooltip>
+                            <!-- <span>重置密码</span> -->
+                        </el-button>
+                    </el-custom-table-column>
                 </el-table>
             </div>
 
