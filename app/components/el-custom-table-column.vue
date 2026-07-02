@@ -1,6 +1,5 @@
 <script setup>
 import { ElTableColumn } from "element-plus"
-import { computed, getCurrentInstance, useAttrs, useSlots } from "vue"
 import { omitBy, isUndefined } from "lodash-es"
 
 defineOptions({ name: "ElCustomTableColumn", inheritAttrs: false })
