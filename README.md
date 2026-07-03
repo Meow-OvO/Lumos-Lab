@@ -1,75 +1,62 @@
-# Lumox Lab
+# Lumos Lab
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> 一套 Vue 3 + Vite 企业级前端启动模板 —— 技术选型秉持长寿性、去绑定、降熵增三大原则。
 
-## Setup
+## 定位
 
-Make sure to install dependencies:
+每次新项目启动时，工程配置与技术选型往往耗费 1-2 天重复劳动。Lumos Lab 是一份经过验证的启动模板，内置了完整的工程配置、目录规范与选型决策参考。
+
+**使用方式：** 克隆后建议先清理 `router/` 中的示例路由定义，保留基础框架即可开始业务开发。目录中保留了完整的示例页面与模块，开发过程中可随时参考或按需删除。
+
+## 设计原则
+
+本项目一切设计围绕以下三个原则展开：
+
+| 原则       | 说明                                                                                                                                                             |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **长寿性** | 选用生命周期长、升级路径平滑的技术方案，避免模板因框架或社区变动而快速过时。例如采用手动路由注册，不依赖 Nuxt 的文件扫描机制，路由定义完全可控，不受框架升级影响 |
+| **去绑定** | 避免与单一供应商或服务形成强绑定，降低未来被迫迁移的风险。例如选用 Iconify 作为图标方案，下层聚合多套开源图标库，可随时切换图标源而无需改动业务代码              |
+| **降熵增** | 每个选型与规范都以降低项目长期维护成本为目标。例如选用 Tailwind 替代 SCSS，以原子类复用替代样式分散定义，减少模板改动时冗余样式堆积和全局污染风险                |
+
+## 技术栈
+
+| 类别 | 方案                   | 选型理由                               |
+| ---- | ---------------------- | -------------------------------------- |
+| 框架 | Vue 3 + Vite           | 主流组合，生态成熟                     |
+| 样式 | Tailwind CSS           | 原子类复用，防止样式冗余与全局污染     |
+| 图标 | Iconify                | 聚合多套免费图标库，不被单一厂商锁定   |
+| 路由 | Vue Router（手动注册） | 路由表显式可追溯，不受框架扫描机制干扰 |
+| 状态 | Pinia                  | Vue 官方推荐，轻量且类型安全           |
+
+**与 Nuxt 4 目录结构的差异：** 本模板将 `pages/` 调整为 `views/`，以更准确地表达该目录的业务属性（页面视图而非仅文件路由），同时避免与 Nuxt 的文件路由语义混淆。`views/` 下按业务模块聚合页面及相关资源（组件、状态、接口），模块内聚性更高。
+
+## 技术试验场
+
+本项目同时作为前沿 Web API 与优化方案的个人验证平台，目前已集成：
+
+- **`el-custom-column` 组件**：基于 Element Plus `el-table-column` 封装，不修改源码、不改变原有 API，通过继承机制注入默认值，实现零成本全功能扩展
+- **Web Worker + LTTB 降采样**：在独立线程中执行百万级数据处理与降采样，配合微任务调度，避免阻塞主线程 UI 渲染
+- **ResizeObserver**：容器级尺寸变化精准监听，替代基于 `window.resize` 的全局事件方案，减少无效重绘
+
+## 快速开始
 
 ```bash
-# npm
+# 安装依赖
 npm install
 
-# pnpm
-pnpm install
+# 启动开发服务
+npm dev
 
-# yarn
-yarn install
-
-# bun
-bun install
+# 构建生产版本
+npm build
 ```
 
-## Development Server
+## 适用场景
 
-Start the development server on `http://localhost:3000`:
+- 需要快速启动 Vue 3 中后台项目的团队
+- 希望参考一套具备明确选型依据的工程配置的个人开发者
+- 对 Tailwind、Iconify、手动路由等方案落地细节有学习需求的读者
 
-```bash
-# npm
-npm run dev
+## License
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+MIT
