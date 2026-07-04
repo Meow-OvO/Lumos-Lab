@@ -6,9 +6,11 @@
 import * as echarts from "echarts"
 import dayjs from "dayjs"
 
-const props = defineProps({
-    trendData: { type: Array, required: true }
-})
+// const props = defineProps({
+//     trendData: { type: Array, required: true }
+// })
+
+let trendData = []
 
 // 生成近31天的日期列表
 const dateList = computed(() => {
@@ -24,6 +26,17 @@ const chartRef = ref(null)
 let chartInstance = null
 let resizeObserver = null
 
+const generateTrendData = () => {
+    const data = []
+    const length = 31
+
+    for (let i = 0; i < length; i++) {
+        data.push(parseFloat((7 + Math.random() * 7).toFixed(2)))
+    }
+
+    return data
+}
+
 const initChart = () => {
     if (!chartRef.value) return
     if (chartInstance) chartInstance.dispose()
@@ -35,7 +48,7 @@ const initChart = () => {
         yAxis: { type: "value", show: false, max: 16, min: 4 },
         series: {
             type: "line",
-            data: props.trendData,
+            data: trendData,
             smooth: true,
             symbol: "circle",
             symbolSize: 1,
@@ -63,16 +76,17 @@ const initChart = () => {
 }
 
 onMounted(() => {
+    trendData = generateTrendData()
     initChart()
     resizeObserver = new ResizeObserver(() => chartInstance?.resize())
     resizeObserver.observe(chartRef.value)
 })
 
-watch(
-    () => props.trendData,
-    () => initChart(),
-    { deep: true }
-)
+// watch(
+//     () => props.trendData,
+//     () => initChart(),
+//     { deep: true }
+// )
 
 onBeforeUnmount(() => {
     chartInstance?.dispose()

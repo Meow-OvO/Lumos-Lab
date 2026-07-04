@@ -117,13 +117,13 @@ onUnmounted(() => {
 
                     <el-custom-table-column label="近31天出勤时长" :show-overflow-tooltip="false">
                         <template #default="{ row }">
-                            <weeklyHoursTrend :trendData="row.trendData" />
+                            <weeklyHoursTrend :key="row.id" />
                         </template>
                     </el-custom-table-column>
 
                     <el-custom-table-column label="近2月出勤热力" :show-overflow-tooltip="false">
                         <template #default="{ row }">
-                            <attendanceHeatmap :mapData="[...row.lastMonthAttendanceData, ...row.currentMonthAttendanceData]" />
+                            <attendanceHeatmap :key="row.id" />
                         </template>
                     </el-custom-table-column>
 

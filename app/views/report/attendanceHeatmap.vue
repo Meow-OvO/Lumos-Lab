@@ -6,18 +6,72 @@
 import * as echarts from "echarts"
 import dayjs from "dayjs"
 
-const props = defineProps({ mapData: { type: Array, required: true, default: () => [] } })
+// const props = defineProps({ mapData: { type: Array, required: true, default: () => [] } })
+
+const generateMonthlyData = (year, month, isCurrentMonth) => {
+    const daysInMonth = dayjs(`${year}-${month}-01`).daysInMonth()
+    const today = dayjs()
+    const result = []
+
+    // 确定结束日期
+    let endDay = daysInMonth
+    if (isCurrentMonth) {
+        // 当月：到昨天为止（今天的数据还没产生）
+        const currentDay = today.date()
+        endDay = Math.min(currentDay - 1, daysInMonth)
+        // 如果今天是一号，则没有数据
+        if (endDay < 1) return []
+    }
+
+    for (let day = 1; day <= endDay; day++) {
+        const date = dayjs(`${year}-${month}-${day}`)
+        const weekday = date.day() // 0=周日, 1=周一, ..., 6=周六
+        const isWeekend = weekday === 0 || weekday === 6
+
+        let value
+        if (isWeekend) {
+            // 周末默认0，5%概率为1
+            value = Math.random() < 0.05 ? 1 : 0
+        } else {
+            // 工作日默认1，5%概率为0或2
+            const rand = Math.random()
+            if (rand < 0.025) {
+                value = 0
+            } else if (rand < 0.05) {
+                value = 2
+            } else {
+                value = 1
+            }
+        }
+
+        result.push([date.format("YYYY-MM-DD"), value])
+    }
+
+    return result
+}
+
+// 获取当前日期
+const now = dayjs()
+const currentYear = now.year()
+const currentMonth = now.month() + 1
+
+// 计算上个月
+const lastMonth = now.subtract(1, "month")
+const lastMonthYear = lastMonth.year()
+const lastMonthMonth = lastMonth.month() + 1
+
+let mapData = [...generateMonthlyData(lastMonthYear, lastMonthMonth, false), ...generateMonthlyData(currentYear, currentMonth, true)]
 
 // 计算 range：根据数据的第一项和最后一项，取它们所在月份的完整区间
 const range = computed(() => {
-    if (!props.mapData.length || !props.mapData[0]?.[0]) {
+    if (!mapData.length || !mapData[0]?.[0]) {
         // 如果没有数据，默认显示当前月
         return [dayjs().startOf("month").format("YYYY-MM-DD"), dayjs().endOf("month").format("YYYY-MM-DD")]
     }
 
     // 获取第一项和最后一项的日期
-    const firstDate = dayjs(props.mapData[0][0])
-    const lastDate = dayjs(props.mapData[props.mapData.length - 1][0])
+    const firstDate = dayjs(mapData[0][0])
+    const lastDate = dayjs(mapData[mapData.length - 1][0])
 
     // 如果第一项和最后一项在同一个月，只显示该月
     if (firstDate.isSame(lastDate, "month")) {
@@ -68,7 +122,7 @@ const initChart = () => {
             monthLabel: { show: false, nameMap: "en" },
             dayLabel: { show: false, nameMap: "en" }
         },
-        series: { type: "heatmap", coordinateSystem: "calendar", data: props.mapData }
+        series: { type: "heatmap", coordinateSystem: "calendar", data: mapData }
     }
 
     chartInstance.setOption(option)
@@ -84,7 +138,7 @@ onMounted(() => {
 
 // 监听 mapData 变化，重新渲染图表
 watch(
-    () => props.mapData,
+    () => mapData,
     () => {
         initChart()
     },

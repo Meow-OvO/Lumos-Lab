@@ -12,7 +12,7 @@ export interface TableRowData {
     performanceSeason_2: string
     // performanceSeason_3: string
     // performanceSeason_4: string
-    currentMonthAttendanceData: [string, number][]
-    lastMonthAttendanceData: [string, number][]
-    trendData: (number | null)[]
+    // currentMonthAttendanceData: [string, number][]
+    // lastMonthAttendanceData: [string, number][]
+    // trendData: (number | null)[]
 }
