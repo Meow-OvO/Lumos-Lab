@@ -113,11 +113,9 @@ onUnmounted(() => {
                         </template>
                     </el-custom-table-column>
 
-                    <el-custom-table-column label="季度绩效">
-                        <el-custom-table-column prop="performanceSeason_1" label="一季度" />
-                        <el-custom-table-column prop="performanceSeason_2" label="二季度" />
-                        <el-custom-table-column prop="performanceSeason_3" label="三季度" />
-                        <el-custom-table-column prop="performanceSeason_4" label="四季度" />
+                    <el-custom-table-column label="近2月季度绩效">
+                        <el-custom-table-column prop="performanceSeason_1" label="本季度" />
+                        <el-custom-table-column prop="performanceSeason_2" label="上季度" />
                     </el-custom-table-column>
 
                     <el-custom-table-column prop="salary" label="薪资">

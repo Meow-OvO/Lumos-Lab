@@ -74,8 +74,8 @@ const createRow = (): TableRowData => {
         status: faker.helpers.arrayElement(statuses),
         performanceSeason_1: faker.helpers.arrayElement(performance),
         performanceSeason_2: faker.helpers.arrayElement(performance),
-        performanceSeason_3: faker.helpers.arrayElement(performance),
-        performanceSeason_4: faker.helpers.arrayElement(performance),
+        // performanceSeason_3: faker.helpers.arrayElement(performance),
+        // performanceSeason_4: faker.helpers.arrayElement(performance),
         createdAt: dayjs(faker.date.past({ years: 3 }).toLocaleDateString("zh-CN")).format("YYYY-MM-DD"),
         // 新增：当月数据（1号到昨天）
         currentMonthAttendanceData: generateMonthlyData(currentYear, currentMonth, true),
