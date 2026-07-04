@@ -100,7 +100,14 @@ onUnmounted(() => {
                     height="100%"
                     show-overflow-tooltip
                 >
-                    <el-custom-table-column prop="id" label="ID" width="100" />
+                    <el-custom-table-column prop="id" label="ID">
+                        <template #default="{ row }">
+                            <el-row align="middle" justify="center">
+                                <span class="mr-1">{{ row.id }}</span>
+                                <clipboard-button :copyContent="row.id" />
+                            </el-row>
+                        </template>
+                    </el-custom-table-column>
                     <el-custom-table-column prop="name" label="姓名" />
                     <el-custom-table-column prop="email" label="邮箱" width="240">
                         <template #default="{ row }">
