@@ -12,4 +12,6 @@ export interface TableRowData {
     performanceSeason_2: string
     performanceSeason_3: string
     performanceSeason_4: string
+    currentMonthAttendanceData: [string, number][] // 新增
+    lastMonthAttendanceData: [string, number][] // 新增
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import employeeWorker from "./employee.worker.ts?worker"
+import attendanceHeatmap from "./attendanceHeatmap.vue"
 import _ from "lodash"
 
 import type { TableRowData } from "./type.d.ts"
@@ -100,6 +101,18 @@ onUnmounted(() => {
                     <el-custom-table-column prop="department" label="部门" />
                     <el-custom-table-column prop="position" label="职位" />
 
+                    <el-custom-table-column label="上月出勤热力" width="110" :show-overflow-tooltip="false">
+                        <template #default="{ row }">
+                            <attendanceHeatmap :mapData="row.lastMonthAttendanceData" />
+                        </template>
+                    </el-custom-table-column>
+
+                    <el-custom-table-column label="本月出勤热力" width="110" :show-overflow-tooltip="false">
+                        <template #default="{ row }">
+                            <attendanceHeatmap :mapData="row.currentMonthAttendanceData" />
+                        </template>
+                    </el-custom-table-column>
+
                     <el-custom-table-column label="季度绩效">
                         <el-custom-table-column prop="performanceSeason_1" label="一季度" />
                         <el-custom-table-column prop="performanceSeason_2" label="二季度" />
@@ -118,31 +131,31 @@ onUnmounted(() => {
                         </template>
                     </el-custom-table-column>
                     <el-custom-table-column prop="createdAt" label="入职日期" />
-                    <el-custom-table-column label="操作" width="140" fixed="right">
-                        <el-button type="text">
+                    <el-custom-table-column label="操作" width="120" fixed="right">
+                        <el-link class="mr-2">
                             <el-tooltip effect="dark" content="详情" placement="bottom">
                                 <el-icon><View /></el-icon>
                             </el-tooltip>
                             <!-- <span>详情</span> -->
-                        </el-button>
-                        <el-button type="text">
+                        </el-link>
+                        <el-link class="mr-2">
                             <el-tooltip effect="dark" content="编辑" placement="bottom">
                                 <el-icon><Edit /></el-icon>
                             </el-tooltip>
                             <!-- <span>编辑</span> -->
-                        </el-button>
-                        <el-button type="text">
+                        </el-link>
+                        <el-link class="mr-2">
                             <el-tooltip effect="dark" content="删除" placement="bottom">
                                 <el-icon><Delete /></el-icon>
                             </el-tooltip>
                             <!-- <span>删除</span> -->
-                        </el-button>
-                        <el-button type="text">
+                        </el-link>
+                        <el-link>
                             <el-tooltip effect="dark" content="重置密码" placement="bottom">
                                 <el-icon><Unlock /></el-icon>
                             </el-tooltip>
                             <!-- <span>重置密码</span> -->
-                        </el-button>
+                        </el-link>
                     </el-custom-table-column>
                 </el-table>
             </div>
