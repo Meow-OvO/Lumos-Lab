@@ -29,6 +29,7 @@ const generateMonthlyData = (year, month, isCurrentMonth) => {
         const isWeekend = weekday === 0 || weekday === 6
 
         let value
+        // 原逻辑：根据是否周末分别生成值
         if (isWeekend) {
             // 周末默认0，5%概率为1
             value = Math.random() < 0.05 ? 1 : 0
@@ -43,6 +44,9 @@ const generateMonthlyData = (year, month, isCurrentMonth) => {
                 value = 1
             }
         }
+
+        // 简化后：直接随机输出 0、1、2
+        // value = Math.floor(Math.random() * 3)
 
         result.push([date.format("YYYY-MM-DD"), value])
     }
