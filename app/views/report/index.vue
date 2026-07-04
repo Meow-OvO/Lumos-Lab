@@ -52,12 +52,12 @@ const setupWorker = () => {
     }
 }
 
-const startWorker = () => {
+const startWorker = (min: number, max: number) => {
     setupWorker()
 
     loading.value = true
 
-    totalCount.value = _.random(10000, 20000)
+    totalCount.value = _.random(min, max)
 
     worker.postMessage({ type: "start", total: totalCount.value })
 }
@@ -78,8 +78,9 @@ onUnmounted(() => {
             <el-custom-card-title>员工信息列表</el-custom-card-title>
 
             <el-alert type="info" :closable="false">
-                <span>使用webworker生成数据, 生成过程切片优化, 不会阻塞操作. </span>
-                <span class="underline cursor-pointer text-blue-400" @click="startWorker">点击生成数据</span>
+                <span class="mr-3">使用webworker生成数据, 生成过程切片优化, 不会阻塞操作. </span>
+                <span class="underline cursor-pointer text-blue-400 mr-3" @click="startWorker(10000, 20000)"> 点击生成10000~20000条数据 </span>
+                <span class="underline cursor-pointer text-blue-400" @click="startWorker(1000000, 2000000)"> 点击生成1000000~2000000条数据 </span>
                 <br />
                 <span v-if="progress"> 正在生成数据, 已加载 {{ progress }} / {{ totalCount }} 条 </span>
             </el-alert>
