@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import employeeWorker from "./employee.worker.ts?worker"
 import attendanceHeatmap from "./attendanceHeatmap.vue"
+import maskPhone from "./maskPhone.vue"
 import _ from "lodash"
 
 import type { TableRowData } from "./type.d.ts"
@@ -97,7 +98,11 @@ onUnmounted(() => {
                     <el-custom-table-column prop="id" label="ID" width="100" />
                     <el-custom-table-column prop="name" label="姓名" />
                     <el-custom-table-column prop="email" label="邮箱" />
-                    <el-custom-table-column prop="phone" label="手机号" />
+                    <el-custom-table-column prop="phone" label="手机号" width="140">
+                        <template #default="{ row }">
+                            <maskPhone :phone="row.phone" />
+                        </template>
+                    </el-custom-table-column>
                     <el-custom-table-column prop="department" label="部门" />
                     <el-custom-table-column prop="position" label="职位" />
 
