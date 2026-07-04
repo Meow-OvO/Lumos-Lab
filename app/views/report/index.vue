@@ -102,7 +102,7 @@ onUnmounted(() => {
                 >
                     <el-custom-table-column prop="id" label="ID" width="100" />
                     <el-custom-table-column prop="name" label="姓名" />
-                    <el-custom-table-column prop="email" label="邮箱">
+                    <el-custom-table-column prop="email" label="邮箱" width="240">
                         <template #default="{ row }">
                             <el-link :href="`mailto:${row.email}`" type="primary">
                                 {{ row.email }}
