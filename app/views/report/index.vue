@@ -106,15 +106,15 @@ onUnmounted(() => {
                     <el-custom-table-column prop="department" label="部门" />
                     <el-custom-table-column prop="position" label="职位" />
 
-                    <el-custom-table-column label="上月出勤热力" width="110" :show-overflow-tooltip="false">
+                    <!-- <el-custom-table-column label="上月出勤热力" width="110" :show-overflow-tooltip="false">
                         <template #default="{ row }">
                             <attendanceHeatmap :mapData="row.lastMonthAttendanceData" />
                         </template>
-                    </el-custom-table-column>
+                    </el-custom-table-column> -->
 
-                    <el-custom-table-column label="本月出勤热力" width="110" :show-overflow-tooltip="false">
+                    <el-custom-table-column label="近2月出勤热力" :show-overflow-tooltip="false">
                         <template #default="{ row }">
-                            <attendanceHeatmap :mapData="row.currentMonthAttendanceData" />
+                            <attendanceHeatmap :mapData="[...row.lastMonthAttendanceData, ...row.currentMonthAttendanceData]" />
                         </template>
                     </el-custom-table-column>
 

@@ -7,11 +7,26 @@ import * as echarts from "echarts"
 import dayjs from "dayjs"
 
 const props = defineProps({ mapData: { type: Array, required: true, default: () => [] } })
-// const range = computed(() => {
-//     return dayjs(props.mapData[0]?.[0] || "").format("YYYY-MM")
-// })
 
-const range = props.mapData[0]?.[0] ? dayjs(props.mapData[0][0]).format("YYYY-MM") : dayjs().format("YYYY-MM")
+// 计算 range：根据数据的第一项和最后一项，取它们所在月份的完整区间
+const range = computed(() => {
+    if (!props.mapData.length || !props.mapData[0]?.[0]) {
+        // 如果没有数据，默认显示当前月
+        return [dayjs().startOf("month").format("YYYY-MM-DD"), dayjs().endOf("month").format("YYYY-MM-DD")]
+    }
+
+    // 获取第一项和最后一项的日期
+    const firstDate = dayjs(props.mapData[0][0])
+    const lastDate = dayjs(props.mapData[props.mapData.length - 1][0])
+
+    // 如果第一项和最后一项在同一个月，只显示该月
+    if (firstDate.isSame(lastDate, "month")) {
+        return [firstDate.startOf("month").format("YYYY-MM-DD"), firstDate.endOf("month").format("YYYY-MM-DD")]
+    }
+
+    // 如果跨月，从第一项所在月的第一天 到 最后一项所在月的最后一天
+    return [firstDate.startOf("month").format("YYYY-MM-DD"), lastDate.endOf("month").format("YYYY-MM-DD")]
+})
 
 const chartRef = ref(null)
 let chartInstance = null
@@ -46,7 +61,7 @@ const initChart = () => {
             left: 0,
             right: 0,
             cellSize: ["auto", "auto"],
-            range: range,
+            range: range.value, // 使用 computed 的值
             splitLine: { lineStyle: { color: "#808080" } },
             itemStyle: { borderWidth: 0, borderColor: "#e8e8e8" },
             yearLabel: { show: false },
@@ -66,6 +81,15 @@ onMounted(() => {
     resizeObserver = new ResizeObserver(() => chartInstance?.resize())
     if (chartRef.value) resizeObserver.observe(chartRef.value)
 })
+
+// 监听 mapData 变化，重新渲染图表
+watch(
+    () => props.mapData,
+    () => {
+        initChart()
+    },
+    { deep: true }
+)
 
 onBeforeUnmount(() => {
     if (chartInstance) {
