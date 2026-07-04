@@ -91,7 +91,7 @@ onUnmounted(() => {
             <!-- </el-alert> -->
             <!-- style="width: 100%" -->
             <!-- :fit="false" -->
-            <div class="mt-4 relative overflow-hidden w-full" :style="{ flex: 1 }">
+            <div class="relative overflow-hidden w-full" :style="{ flex: 1 }">
                 <el-table
                     v-loading="loading"
                     element-loading-text="✨正在加载..."
