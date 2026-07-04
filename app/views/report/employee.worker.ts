@@ -9,7 +9,6 @@ const positions = ["工程师", "经理", "主管", "专员", "总监", "助理"
 const statuses: ("在职" | "离职")[] = ["在职", "离职"]
 const performance = ["超出预期🚀", "符合预期✅", "待提升🌱", "不合格❌"]
 
-// 生成月度数据
 const generateMonthlyData = (year: number, month: number, isCurrentMonth: boolean): [string, number][] => {
     const daysInMonth = dayjs(`${year}-${month}-01`).daysInMonth()
     const today = dayjs()
@@ -52,6 +51,49 @@ const generateMonthlyData = (year: number, month: number, isCurrentMonth: boolea
     return result
 }
 
+const generateTrendData = (): (number | null)[] => {
+    const data: (number | null)[] = []
+    const length = 31
+
+    let burstRemaining = 0
+    let burstPrevious = 8 + Math.random() * 8
+
+    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
+    const generateSkewedHighValue = () => parseFloat((8 + Math.pow(Math.random(), 2) * 8).toFixed(2))
+
+    for (let i = 0; i < length; i++) {
+        let value: number | null
+
+        const rand = Math.random()
+        if (rand < 0.02) {
+            // 极小概率生成 null
+            value = null
+            burstRemaining = 0
+        } else if (burstRemaining > 0) {
+            // 连续不超过 10 次的 8~16 震荡段，上下浮动 1
+            const delta = Math.random() * 2 - 1
+            value = clamp(parseFloat((burstPrevious + delta).toFixed(2)), 8, 16)
+            burstPrevious = value
+            burstRemaining -= 1
+        } else if (rand < 0.1) {
+            // 小概率生成 7~8
+            value = parseFloat((7 + Math.random() * 1).toFixed(2))
+        } else if (rand < 0.15) {
+            // 小概率生成 8~16，越接近 16 概率越小
+            value = generateSkewedHighValue()
+            burstPrevious = value
+            burstRemaining = Math.floor(Math.random() * 9) + 1
+        } else {
+            // 大概率生成 8~8.5
+            value = parseFloat((8 + Math.random() * 0.5).toFixed(2))
+        }
+
+        data.push(value)
+    }
+
+    return data
+}
+
 const createRow = (): TableRowData => {
     // 获取当前日期
     const now = dayjs()
@@ -80,7 +122,9 @@ const createRow = (): TableRowData => {
         // 新增：当月数据（1号到昨天）
         currentMonthAttendanceData: generateMonthlyData(currentYear, currentMonth, true),
         // 新增：上月数据（整个月）
-        lastMonthAttendanceData: generateMonthlyData(lastMonthYear, lastMonthMonth, false)
+        lastMonthAttendanceData: generateMonthlyData(lastMonthYear, lastMonthMonth, false),
+        // 新增：趋势数据
+        trendData: generateTrendData()
     }
 }
 

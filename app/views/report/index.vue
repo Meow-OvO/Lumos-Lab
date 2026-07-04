@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import _ from "lodash"
 import employeeWorker from "./employee.worker.ts?worker"
+
 import attendanceHeatmap from "./attendanceHeatmap.vue"
 import maskPhone from "./maskPhone.vue"
-import _ from "lodash"
+import weeklyHoursTrend from "./weeklyHoursTrend.vue"
 
 import type { TableRowData } from "./type.d.ts"
 
@@ -112,6 +114,12 @@ onUnmounted(() => {
                             <attendanceHeatmap :mapData="row.lastMonthAttendanceData" />
                         </template>
                     </el-custom-table-column> -->
+
+                    <el-custom-table-column label="近31天出勤时长" :show-overflow-tooltip="false">
+                        <template #default="{ row }">
+                            <weeklyHoursTrend :trendData="row.trendData" />
+                        </template>
+                    </el-custom-table-column>
 
                     <el-custom-table-column label="近2月出勤热力" :show-overflow-tooltip="false">
                         <template #default="{ row }">
