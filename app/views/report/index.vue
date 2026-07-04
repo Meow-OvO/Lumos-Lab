@@ -100,7 +100,7 @@ onUnmounted(() => {
                     height="100%"
                     show-overflow-tooltip
                 >
-                    <el-custom-table-column prop="id" label="ID">
+                    <el-custom-table-column prop="id" label="ID" fixed="left">
                         <template #default="{ row }">
                             <el-row align="middle" justify="center">
                                 <span class="mr-1">{{ row.id }}</span>
@@ -108,7 +108,7 @@ onUnmounted(() => {
                             </el-row>
                         </template>
                     </el-custom-table-column>
-                    <el-custom-table-column prop="name" label="姓名" />
+                    <el-custom-table-column prop="name" label="姓名" fixed="left" />
                     <el-custom-table-column prop="email" label="邮箱" width="240">
                         <template #default="{ row }">
                             <el-link :href="`mailto:${row.email}`" type="primary">
