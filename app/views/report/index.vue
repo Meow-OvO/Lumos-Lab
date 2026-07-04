@@ -104,8 +104,8 @@ onUnmounted(() => {
                             <maskPhone :phone="row.phone" />
                         </template>
                     </el-custom-table-column>
-                    <el-custom-table-column prop="department" label="部门" />
-                    <el-custom-table-column prop="position" label="职位" />
+                    <el-custom-table-column prop="department" label="部门" width="100" />
+                    <el-custom-table-column prop="position" label="职位" width="100" />
 
                     <!-- <el-custom-table-column label="上月出勤热力" width="110" :show-overflow-tooltip="false">
                         <template #default="{ row }">
@@ -124,7 +124,7 @@ onUnmounted(() => {
                         <el-custom-table-column prop="performanceSeason_2" label="上季度" />
                     </el-custom-table-column>
 
-                    <el-custom-table-column prop="salary" label="薪资">
+                    <el-custom-table-column prop="salary" label="薪资" width="100">
                         <template #default="{ row }">¥{{ row.salary.toLocaleString() }}</template>
                     </el-custom-table-column>
                     <el-custom-table-column prop="status" label="状态" width="80">
