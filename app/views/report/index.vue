@@ -5,6 +5,7 @@ import employeeWorker from "./employee.worker.ts?worker"
 import attendanceHeatmap from "./attendanceHeatmap.vue"
 import maskPhone from "./maskPhone.vue"
 import weeklyHoursTrend from "./weeklyHoursTrend.vue"
+import performanceRate from "./performanceRate.vue"
 
 import type { TableRowData } from "./type.d.ts"
 
@@ -124,13 +125,19 @@ onUnmounted(() => {
                     <el-custom-table-column prop="department" label="部门" width="100" />
                     <el-custom-table-column prop="position" label="职位" width="100" />
 
+                    <el-custom-table-column prop="performanceRate" label="关键绩效达成度" width="130">
+                        <template #default="{ row }">
+                            <performanceRate :rate="row.performanceRate" />
+                        </template>
+                    </el-custom-table-column>
+
                     <!-- <el-custom-table-column label="上月出勤热力" width="110" :show-overflow-tooltip="false">
                         <template #default="{ row }">
                             <attendanceHeatmap :mapData="row.lastMonthAttendanceData" />
                         </template>
                     </el-custom-table-column> -->
 
-                    <el-custom-table-column label="近31天出勤时长" :show-overflow-tooltip="false">
+                    <el-custom-table-column label="近31天出勤时长" :show-overflow-tooltip="false" width="130">
                         <template #default="{ row }">
                             <weeklyHoursTrend :key="row.id" />
                         </template>

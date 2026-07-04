@@ -8,6 +8,7 @@ export interface TableRowData {
     salary: number
     status: "在职" | "离职"
     createdAt: string
+    performanceRate: number
     performanceSeason_1: string
     performanceSeason_2: string
     // performanceSeason_3: string

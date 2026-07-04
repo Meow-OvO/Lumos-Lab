@@ -82,6 +82,7 @@ const createRow = (): TableRowData => {
         position: faker.helpers.arrayElement(positions),
         salary: faker.number.int({ min: 8000, max: 50000 }),
         status: faker.helpers.arrayElement(statuses),
+        performanceRate: faker.number.int({ min: 0, max: 100 }),
         performanceSeason_1: faker.helpers.arrayElement(performance),
         performanceSeason_2: faker.helpers.arrayElement(performance),
         // performanceSeason_3: faker.helpers.arrayElement(performance),
