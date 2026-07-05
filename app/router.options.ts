@@ -6,7 +6,8 @@ const routesConfig = [
     { path: "/about", meta: { layout: "nav" }, component: () => import("@/views/about.vue") },
     { path: "/devNotes", meta: { layout: "nav" }, component: () => import("@/views/devNotes/index.vue") },
     { path: "/report", meta: { layout: "nav" }, component: () => import("@/views/report/index.vue") },
-    { path: "/millionDataEcharts", meta: { layout: "nav" }, component: () => import("@/views/millionDataEcharts/index.vue") }
+    { path: "/millionDataEcharts", meta: { layout: "nav" }, component: () => import("@/views/millionDataEcharts/index.vue") },
+    { path: "/amap", meta: { layout: "nav" }, component: () => import("@/views/amap/index.vue") }
     // { name: "environmentInfo", path: "/environmentInfo", meta: { layout: "nav" }, component: () => import("@/views/environmentInfo/index.vue") }
 ]
 

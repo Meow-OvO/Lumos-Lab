@@ -37,6 +37,11 @@ const navTabStore = useNavTabStore()
                         <span>百万级数据图形渲染</span>
                     </el-menu-item>
 
+                    <el-menu-item index="/amap">
+                        <el-icon><Icon name="mdi:map-marker" /></el-icon>
+                        <span>高德地图</span>
+                    </el-menu-item>
+
                     <!-- <el-menu-item index="/environmentInfo">
                         <el-icon><PieChart /></el-icon>
                         <span>系统环境信息</span>
