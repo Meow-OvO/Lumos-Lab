@@ -52,15 +52,17 @@ const amapInstance = ref(null)
 const setupCurrentPosition = async () => {
     let coordsRes = null
     loading.setupCurrentPosition = true
-    if (amapInstance.value) coordsRes = await amapInstance.value.setupCurrentPosition()
-    console.log(coordsRes)
 
-    const addressRes = await amapInstance.value.getAddressByCoords(coordsRes.position.lng, coordsRes.position.lat)
+    try {
+        if (amapInstance.value) coordsRes = await amapInstance.value.setupCurrentPosition()
 
-    console.log(addressRes)
-    markerAddress.value = addressRes.regeocode.formatted_address
-
-    loading.setupCurrentPosition = false
+        const addressRes = await amapInstance.value.getAddressByCoords(coordsRes.position.lng, coordsRes.position.lat)
+        markerAddress.value = addressRes.regeocode.formatted_address
+        loading.setupCurrentPosition = false
+    } catch (error) {
+        ElMessage.error("定位失败，请检查浏览器是否允许定位或网络是否正常")
+        loading.setupCurrentPosition = false
+    }
 }
 
 const AMapClick = async event => {
