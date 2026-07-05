@@ -38,7 +38,7 @@ const navTabStore = useNavTabStore()
                     </el-menu-item>
 
                     <el-menu-item index="/amap">
-                        <el-icon><Icon name="mdi:map-marker" /></el-icon>
+                        <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
                         <span>高德地图</span>
                     </el-menu-item>
 
