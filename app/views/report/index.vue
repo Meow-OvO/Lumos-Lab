@@ -166,25 +166,25 @@ onUnmounted(() => {
                     </el-custom-table-column>
                     <el-custom-table-column prop="createdAt" label="入职日期" />
                     <el-custom-table-column label="操作" width="120" fixed="right">
-                        <el-link type="primary" class="mr-2">
+                        <el-link type="primary" class="mr-2" @click="ElMessage('详情')">
                             <el-tooltip effect="dark" content="详情" placement="bottom">
                                 <el-icon><View /></el-icon>
                             </el-tooltip>
                             <!-- <span>详情</span> -->
                         </el-link>
-                        <el-link type="primary" class="mr-2">
+                        <el-link type="primary" class="mr-2" @click="ElMessage('编辑')">
                             <el-tooltip effect="dark" content="编辑" placement="bottom">
                                 <el-icon><Edit /></el-icon>
                             </el-tooltip>
                             <!-- <span>编辑</span> -->
                         </el-link>
-                        <el-link type="primary" class="mr-2">
+                        <el-link type="primary" class="mr-2" @click="ElMessage('删除')">
                             <el-tooltip effect="dark" content="删除" placement="bottom">
                                 <el-icon><Delete /></el-icon>
                             </el-tooltip>
                             <!-- <span>删除</span> -->
                         </el-link>
-                        <el-link type="primary">
+                        <el-link type="primary" @click="ElMessage('重置密码')">
                             <el-tooltip effect="dark" content="重置密码" placement="bottom">
                                 <el-icon><Unlock /></el-icon>
                             </el-tooltip>
