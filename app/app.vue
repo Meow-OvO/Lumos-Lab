@@ -3,6 +3,8 @@
     <!-- <NuxtWelcome /> -->
     <NuxtLayout :name="layoutName">
         <NuxtPage keepalive />
+
+        <NuxtLoadingIndicator />
     </NuxtLayout>
 </template>
 
