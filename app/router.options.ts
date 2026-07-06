@@ -11,9 +11,4 @@ const routesConfig = [
     // { name: "environmentInfo", path: "/environmentInfo", meta: { layout: "nav" }, component: () => import("@/views/environmentInfo/index.vue") }
 ]
 
-export default <RouterConfig>{
-    routes: _routes => {
-        console.log(_routes)
-        return routesConfig
-    }
-}
+export default <RouterConfig>{ routes: _routes => routesConfig }
