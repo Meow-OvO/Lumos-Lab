@@ -42,6 +42,11 @@ const navTabStore = useNavTabStore()
                         <span>高德地图</span>
                     </el-menu-item>
 
+                    <!-- <el-menu-item index="/openLayers">
+                        <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
+                        <span>OpenLayers</span>
+                    </el-menu-item> -->
+
                     <!-- <el-menu-item index="/environmentInfo">
                         <el-icon><PieChart /></el-icon>
                         <span>系统环境信息</span>

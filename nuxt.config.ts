@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     devServer: { port: 4060 },
     elementPlus: { icon: "", defaultLocale: "zh-cn", globalConfig: { size: "default" } },
     app: { head: { title: "Lumos Lab" }, baseURL: "/Lumos-Lab/" },
-    css: ["@/assets/style/index.css"],
+    css: ["@/assets/style/index.css", "ol/ol.css"],
     runtimeConfig: { public: { buildTime: dayjs().format("YYYY-MM-DD HH:mm:ss") } },
     tailwindcss: { config: { content: ["./app/views/**/*.{vue,js,ts}"] } },
 
