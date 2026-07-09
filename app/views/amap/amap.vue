@@ -5,35 +5,26 @@
 <script setup>
 import AMapLoader from "@amap/amap-jsapi-loader"
 
-const emit = defineEmits(["mapClick"])
+const emit = defineEmits(["mark-change"])
+
+const AMAP_JS_KEY = "eb469a90dd8476c0cf8210006d25afc3"
+const AMAP_WEB_KEY = "930ed13b65a9685b396b5b117d98b67a"
+const AMAP_SECURITY_JS_CODE = "75786255f35fa7e3680556c0b5d12516"
 
 let AMap = null
 let map = null
 let geolocation = null
+let driving = null
 
 let marker = null
 
-const AMAP_JS_KEY = "eb469a90dd8476c0cf8210006d25afc3" // 注意：请使用Web服务类型Key，区别于JS API的Key
-const AMAP_WEB_KEY = "930ed13b65a9685b396b5b117d98b67a"
-
 const setupAmap = async () => {
-    window._AMapSecurityConfig = { securityJsCode: "75786255f35fa7e3680556c0b5d12516" }
+    window._AMapSecurityConfig = { securityJsCode: AMAP_SECURITY_JS_CODE }
 
     // try {
     AMap = await AMapLoader.load({ key: AMAP_JS_KEY, version: "2.0", plugins: ["AMap.Scale", "AMap.Geolocation"] })
 
     map = new AMap.Map("amap-container", { viewMode: "3D", zoom: 12 })
-
-    map.on("click", event => {
-        console.log("点击坐标:", event.lnglat.lng, event.lnglat.lat, event)
-
-        emit("mapClick", event)
-
-        // 在这里可以调用逆地理编码，将坐标转为地址
-        // 或者添加一个临时标记等
-    })
-
-    geolocation = new AMap.Geolocation({ enableHighAccuracy: true, timeout: 16000, zoomToAccuracy: true })
 
     // setupCurrentPosition()
     // geolocation.getCurrentPosition((status, result) => {
@@ -60,6 +51,15 @@ const setupAmap = async () => {
         map.addControl(ControlBar)
     })
 
+    AMap.plugin("AMap.Driving", function () {
+        driving = new AMap.Driving({
+            // 关键参数：将路线绘制在地图对象上
+            map: map
+            // 关键参数：将路线详情展示在指定的DOM容器中
+            // panel: 'my-panel'
+        })
+    })
+
     // AMap.plugin("AMap.Geolocation", () => {
     //     var Geolocation = new AMap.Geolocation()
     //     map.addControl(Geolocation)
@@ -76,12 +76,43 @@ const setupAmap = async () => {
     })
 }
 
+const setupDrivingRoute = (startLng, startLat, endLng, endLat) => {
+    // 3. 发起路线规划请求
+    // 使用起终点经纬度规划，也支持关键字
+    driving.search(
+        new AMap.LngLat(startLng, startLat), // 起点
+        new AMap.LngLat(endLng, endLat), // 终点
+        (status, result) => {
+            if (status === "complete") {
+                console.log("路线规划成功", result)
+            } else {
+                console.error("路线规划失败", result)
+            }
+        }
+    )
+}
+
 const setupAMapClick = event => {
-    console.log("AMap clicked", event)
+    map.on("click", async event => {
+        console.log("点击坐标:", event.lnglat.lng, event.lnglat.lat, event)
+
+        const res = await getAddressByCoords(event.lnglat.lng, event.lnglat.lat)
+        // console.log("AMapClick", res, res.regeocode.formatted_address)
+
+        emit("mark-change", res.regeocode.formatted_address)
+        // markerAddress.value = res.regeocode.formatted_address
+
+        markToPosition(event.lnglat.lng, event.lnglat.lat)
+
+        // 在这里可以调用逆地理编码，将坐标转为地址
+        // 或者添加一个临时标记等
+    })
 }
 
 const setupCurrentPosition = () =>
     new Promise((resolve, reject) => {
+        geolocation = new AMap.Geolocation({ enableHighAccuracy: true, timeout: 16000, zoomToAccuracy: true })
+
         if (geolocation) {
             geolocation.getCurrentPosition((status, result) => {
                 if (status === "complete") {
@@ -136,24 +167,22 @@ const getAddressByCoords = async (lng, lat, radius = 1000, extensions = "all") =
     }
 }
 
-onMounted(() => {
-    setupAmap()
+onMounted(async () => {
+    await setupAmap()
+
+    setupAMapClick()
 })
 
 onUnmounted(() => {
     map?.destroy()
 })
 
-defineExpose({
-    setupCurrentPosition,
-    getAddressByCoords,
-    markToPosition
-})
+defineExpose({ setupCurrentPosition, getAddressByCoords, markToPosition, setupDrivingRoute })
 </script>
 
 <style scoped>
 #amap-container {
-    height: calc(100vh - 236px);
+    height: calc(100vh - 142px);
     width: 100%;
 }
 </style>
