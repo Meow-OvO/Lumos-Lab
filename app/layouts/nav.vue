@@ -32,6 +32,11 @@ const navTabStore = useNavTabStore()
                         <span>数据报表</span>
                     </el-menu-item>
 
+                    <!-- <el-menu-item index="/echarts">
+                        <el-icon><Icon name="simple-icons:apacheecharts" /></el-icon>
+                        <span>Apache Echarts</span>
+                    </el-menu-item> -->
+
                     <el-menu-item index="/millionDataEcharts">
                         <el-icon><Icon name="mdi:chart-line" /></el-icon>
                         <span>百万级数据图形渲染</span>
