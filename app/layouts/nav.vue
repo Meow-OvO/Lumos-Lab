@@ -120,9 +120,13 @@ const navTabStore = useNavTabStore()
 
         <el-container>
             <el-header class="bg-white">
-                <el-row class="h-full" align="middle">
-                    <el-icon size="24px" v-if="!menuCollapse" @click="menuCollapse = true"><Fold /></el-icon>
-                    <el-icon size="24px" v-if="menuCollapse" @click="menuCollapse = false"><Expand /></el-icon>
+                <el-row class="h-full" align="middle" justify="space-between">
+                    <div>
+                        <el-icon size="24px" v-if="!menuCollapse" @click="menuCollapse = true"><Fold /></el-icon>
+                        <el-icon size="24px" v-if="menuCollapse" @click="menuCollapse = false"><Expand /></el-icon>
+                    </div>
+
+                    <full-screen-button></full-screen-button>
                 </el-row>
             </el-header>
 
