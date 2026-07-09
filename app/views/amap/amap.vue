@@ -24,7 +24,7 @@ const setupAmap = async () => {
     // try {
     AMap = await AMapLoader.load({ key: AMAP_JS_KEY, version: "2.0", plugins: ["AMap.Scale", "AMap.Geolocation"] })
 
-    map = new AMap.Map("amap-container", { viewMode: "3D", zoom: 12 })
+    map = new AMap.Map("amap-container", { viewMode: "3D", zoom: 12, center: [121.4997, 31.2397] })
 
     // setupCurrentPosition()
     // geolocation.getCurrentPosition((status, result) => {
