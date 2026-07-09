@@ -119,7 +119,7 @@ onUnmounted(() => {
                     </el-custom-table-column>
                     <el-custom-table-column prop="phone" label="手机号" width="140">
                         <template #default="{ row }">
-                            <maskPhone v-if="row.id" :key="row.id" :phone="row.phone" />
+                            <maskPhone :key="row.id" :phone="row.phone" />
                         </template>
                     </el-custom-table-column>
                     <el-custom-table-column prop="department" label="部门" width="100" />

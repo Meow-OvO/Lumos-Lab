@@ -17,7 +17,7 @@ const maskPhone = phone => {
 }
 
 const props = defineProps({
-    phone: { type: [String, Number], required: true },
+    phone: { type: [String, Number], default: "", required: true },
     defaultShow: { type: Boolean, default: false }
 })
 
