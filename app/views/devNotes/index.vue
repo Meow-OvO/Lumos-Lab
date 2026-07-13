@@ -1,6 +1,6 @@
 <template>
-    <div class="p-5">
-        <el-row :gutter="20">
+    <div class="p-3">
+        <el-row :gutter="12">
             <el-col :span="6">
                 <gitCommitType />
             </el-col>

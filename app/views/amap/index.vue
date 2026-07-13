@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5">
+    <div class="p-3">
         <!-- <el-card>
             <el-custom-card-title class="text-lg font-bold mb-4">
                 <span>高德地图示例</span>
@@ -15,12 +15,12 @@
             <amap ref="amapInstance" @map-click="AMapMarkChange" />
         </el-card> -->
 
-        <el-row :gutter="20">
+        <el-row :gutter="12">
             <el-col :span="10">
                 <el-card>
                     <el-custom-card-title>高德地图示例</el-custom-card-title>
 
-                    <el-scrollbar height="calc(100vh - 180px)">
+                    <el-scrollbar height="calc(100vh - 204px)">
                         <p class="text-sm mb-3">🌐 根据浏览器位置信息定位 , 或者点击地图定位</p>
 
                         <el-button type="primary" :icon="Location" class="mr-3" :loading="loading.setupCurrentPosition" @click="setupCurrentPosition"

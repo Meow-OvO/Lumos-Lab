@@ -78,7 +78,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <el-card class="m-5 box-border">
+    <el-card class="m-3 box-border">
         <el-row class="content-container flex-col">
             <el-custom-card-title>员工信息列表</el-custom-card-title>
 
@@ -209,6 +209,6 @@ onUnmounted(() => {
 
 <style scoped>
 .content-container {
-    height: calc(100vh - 142px);
+    height: calc(100vh - 166px);
 }
 </style>

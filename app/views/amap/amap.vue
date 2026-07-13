@@ -182,7 +182,7 @@ defineExpose({ setupCurrentPosition, getAddressByCoords, markToPosition, setupDr
 
 <style scoped>
 #amap-container {
-    height: calc(100vh - 142px);
+    height: calc(100vh - 166px);
     width: 100%;
 }
 </style>

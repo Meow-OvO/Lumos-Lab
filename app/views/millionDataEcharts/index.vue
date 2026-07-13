@@ -203,10 +203,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="p-[20px]">
-        <el-row :gutter="20">
+    <div class="p-3">
+        <el-row :gutter="12">
             <el-col :span="12">
-                <el-card class="mb-[20px]">
+                <el-card class="mb-3">
                     <el-custom-card-title>操作</el-custom-card-title>
 
                     <el-row class="text-[14px] mb-3">🌀 生成模拟数据 , 生成和处理操作都会经过 Web Worker , 不会阻塞线程</el-row>
@@ -267,7 +267,7 @@ onBeforeUnmount(() => {
                 <el-card>
                     <el-custom-card-title>数据</el-custom-card-title>
 
-                    <el-table :data="currentPageData" border height="calc(100vh - 691px)">
+                    <el-table :data="currentPageData" border height="calc(100vh - 707px)">
                         <el-table-column prop="date" label="Date" />
                         <el-table-column prop="value" label="Value" />
                     </el-table>
@@ -286,7 +286,7 @@ onBeforeUnmount(() => {
             </el-col>
 
             <el-col :span="12">
-                <el-card class="mb-[20px]">
+                <el-card class="mb-3">
                     <el-custom-card-title>关于本页面</el-custom-card-title>
 
                     <!-- height="calc((100vh - 534px) / 3)" -->
@@ -306,7 +306,7 @@ onBeforeUnmount(() => {
                     </el-scrollbar>
                 </el-card>
 
-                <el-card class="mb-[20px]">
+                <el-card class="mb-3">
                     <el-custom-card-title>lttb 降采图形</el-custom-card-title>
 
                     <div ref="million-line-lttb-graph" class="million-line-lttb-graph"></div>
@@ -331,6 +331,6 @@ onBeforeUnmount(() => {
 .million-line-graph,
 .million-line-lttb-graph {
     width: 100%;
-    height: calc((100vh - 380px) * 3 / 8);
+    height: calc((100vh - 391px) * 3 / 8);
 }
 </style>

@@ -29,8 +29,8 @@ const env = process.env.NODE_ENV
 </script>
 
 <template>
-    <div class="p-5">
-        <el-row :gutter="20">
+    <div class="p-3">
+        <el-row :gutter="12">
             <el-col :span="6">
                 <el-card>
                     <el-custom-card-title>关于这个模板 ✨❤️🎉</el-custom-card-title>
@@ -66,7 +66,7 @@ const env = process.env.NODE_ENV
 
                     <el-input v-model="libs.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
 
-                    <el-scrollbar height="calc(100vh - 228px)">
+                    <el-scrollbar height="calc(100vh - 252px)">
                         <template v-for="(item, index) in filteredList">
                             <el-divider v-if="index" :style="{ margin: '10px 0' }"></el-divider>
 
@@ -100,7 +100,7 @@ const env = process.env.NODE_ENV
             </el-col>
 
             <el-col :span="6">
-                <el-card class="mb-5">
+                <el-card class="mb-3">
                     <el-custom-card-title>已经完成的内容</el-custom-card-title>
 
                     <el-tag type="primary" effect="dark">手动路由行为</el-tag>
@@ -110,7 +110,7 @@ const env = process.env.NODE_ENV
                     <el-tag type="primary" effect="dark">构建时间打标</el-tag>
                 </el-card>
 
-                <el-card class="mb-5">
+                <el-card class="mb-3">
                     <el-custom-card-title>正在规划中的内容</el-custom-card-title>
 
                     <el-tag type="primary" effect="dark">NavTab标签导航</el-tag>
@@ -122,7 +122,7 @@ const env = process.env.NODE_ENV
             </el-col>
 
             <el-col :span="6">
-                <el-card class="mb-5">
+                <el-card class="mb-3">
                     <el-custom-card-title>联系方式</el-custom-card-title>
 
                     <div class="text-[14px]">
