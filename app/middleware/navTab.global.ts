@@ -3,13 +3,13 @@
 // const navTabStore = useNavTabStore($pinia)
 
 export default defineNuxtRouteMiddleware((to, from) => {
-    console.log("navTab.global", to, from)
+    // console.log("navTab.global", to, from)
 
     // const { $pinia } = useNuxtApp()
 
     const navTabStore = useNavTabStore()
 
-    console.log(navTabStore)
+    // console.log(navTabStore)
 
     if (to.meta.layout !== "nav") return
 
