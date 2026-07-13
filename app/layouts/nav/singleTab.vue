@@ -46,12 +46,12 @@ const props = defineProps({
     opacity: 1;
 }
 
-/* .close-icon {
+.close-icon {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .tab-item:hover .close-icon {
     opacity: 1;
-} */
+}
 </style>
