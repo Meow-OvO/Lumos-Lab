@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+import navTabs from "./nav/navTabs.vue"
+
 const menuCollapse = ref(false)
 
 const navTabStore = useNavTabStore()
+
+import { navRoutes } from "@/router.options.js"
 </script>
 
 <template>
@@ -17,8 +21,13 @@ const navTabStore = useNavTabStore()
                     router
                     :default-active="$route.path"
                 >
-                    <el-menu-item index="/home">
-                        <el-icon><HomeFilled /></el-icon>
+                    <el-menu-item v-for="nav in navRoutes" :index="nav.path">
+                        <el-icon><Icon :name="nav.meta.icon" /></el-icon>
+                        <span>{{ nav.meta.title }}</span>
+                    </el-menu-item>
+
+                    <!-- <el-menu-item index="/home">
+                        <el-icon><Icon name="ep:home-filled" /></el-icon>
                         <span>主页</span>
                     </el-menu-item>
 
@@ -32,11 +41,6 @@ const navTabStore = useNavTabStore()
                         <span>数据报表</span>
                     </el-menu-item>
 
-                    <!-- <el-menu-item index="/echarts">
-                        <el-icon><Icon name="simple-icons:apacheecharts" /></el-icon>
-                        <span>Apache Echarts</span>
-                    </el-menu-item> -->
-
                     <el-menu-item index="/millionDataEcharts">
                         <el-icon><Icon name="mdi:chart-line" /></el-icon>
                         <span>百万级数据图形渲染</span>
@@ -45,7 +49,12 @@ const navTabStore = useNavTabStore()
                     <el-menu-item index="/amap">
                         <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
                         <span>高德地图</span>
-                    </el-menu-item>
+                    </el-menu-item> -->
+
+                    <!-- <el-menu-item index="/echarts">
+                        <el-icon><Icon name="simple-icons:apacheecharts" /></el-icon>
+                        <span>Apache Echarts</span>
+                    </el-menu-item> -->
 
                     <!-- <el-menu-item index="/openLayers">
                         <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
@@ -130,6 +139,8 @@ const navTabStore = useNavTabStore()
                 </el-row>
             </el-header>
 
+            <navTabs />
+
             <main>
                 <el-scrollbar class="main-content-scroll-container">
                     <slot />
@@ -141,7 +152,7 @@ const navTabStore = useNavTabStore()
 
 <style scoped>
 .main-content-scroll-container {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 100px);
 }
 
 /* ==================== 菜单容器 ==================== */

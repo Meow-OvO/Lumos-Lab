@@ -6,7 +6,15 @@ export default defineNuxtConfig({
     compatibilityDate: "2026-06-11",
     ssr: false,
     devtools: { enabled: true },
-    modules: ["@element-plus/nuxt", "@pinia/nuxt", "pinia-plugin-persistedstate/nuxt", "@nuxtjs/tailwindcss", "@hypernym/nuxt-anime", "@nuxt/icon"],
+    modules: [
+        "@element-plus/nuxt",
+        "@pinia/nuxt",
+        "pinia-plugin-persistedstate/nuxt",
+        "@nuxtjs/tailwindcss",
+        "@hypernym/nuxt-anime",
+        "@nuxt/icon",
+        "@formkit/auto-animate"
+    ],
     devServer: { port: 4060 },
     elementPlus: { icon: "", defaultLocale: "zh-cn", globalConfig: { size: "default" } },
     app: { head: { title: "Lumos Lab" }, baseURL: "/Lumos-Lab/" },
@@ -15,6 +23,8 @@ export default defineNuxtConfig({
     tailwindcss: { config: { content: ["./app/views/**/*.{vue,js,ts}"] } },
 
     vite: {
-        optimizeDeps: { include: ["@faker-js/faker", "dayjs", "dayjs/plugin/*.js", "lodash-unified"] }
+        optimizeDeps: {
+            include: ["@amap/amap-jsapi-loader", "@faker-js/faker", "@vue/devtools-core", "@vue/devtools-kit", "dayjs", "dayjs/plugin/*.js", "lodash-unified"]
+        }
     }
 })
