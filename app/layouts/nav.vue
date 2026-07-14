@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 import navTabs from "./nav/navTabs.vue"
+import { navRoutes } from "@/router.options.js"
 
 const menuCollapse = ref(false)
 
 const navTabStore = useNavTabStore()
 
-import { navRoutes } from "@/router.options.js"
+const currentPageActive = ref(true)
+const reloadCurrentPage = () => {
+    currentPageActive.value = false
+    nextTick(() => (currentPageActive.value = true))
+}
 </script>
 
 <template>
@@ -25,104 +30,6 @@ import { navRoutes } from "@/router.options.js"
                         <el-icon><Icon :name="nav.meta.icon" /></el-icon>
                         <span>{{ nav.meta.title }}</span>
                     </el-menu-item>
-
-                    <!-- <el-menu-item index="/home">
-                        <el-icon><Icon name="ep:home-filled" /></el-icon>
-                        <span>主页</span>
-                    </el-menu-item>
-
-                    <el-menu-item index="/devNotes">
-                        <el-icon><Icon name="material-symbols:sticky-note-2-outline-rounded" /></el-icon>
-                        <span>开发手记</span>
-                    </el-menu-item>
-
-                    <el-menu-item index="/report">
-                        <el-icon><Icon name="material-symbols-light:table-outline-sharp" /></el-icon>
-                        <span>数据报表</span>
-                    </el-menu-item>
-
-                    <el-menu-item index="/millionDataEcharts">
-                        <el-icon><Icon name="mdi:chart-line" /></el-icon>
-                        <span>百万级数据图形渲染</span>
-                    </el-menu-item>
-
-                    <el-menu-item index="/amap">
-                        <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
-                        <span>高德地图</span>
-                    </el-menu-item> -->
-
-                    <!-- <el-menu-item index="/echarts">
-                        <el-icon><Icon name="simple-icons:apacheecharts" /></el-icon>
-                        <span>Apache Echarts</span>
-                    </el-menu-item> -->
-
-                    <!-- <el-menu-item index="/openLayers">
-                        <el-icon><Icon name="famicons:paper-plane-outline" /></el-icon>
-                        <span>OpenLayers</span>
-                    </el-menu-item> -->
-
-                    <!-- <el-menu-item index="/environmentInfo">
-                        <el-icon><PieChart /></el-icon>
-                        <span>系统环境信息</span>
-                    </el-menu-item> -->
-
-                    <!-- <el-sub-menu index="1">
-                        <template #title>
-                            <el-icon><message /></el-icon>
-                            <span>Navigator One</span>
-                        </template>
-
-                        <el-menu-item-group>
-                            <template #title>Group 1</template>
-                            <el-menu-item index="/about">about</el-menu-item>
-                            <el-menu-item index="1-2">Option 2</el-menu-item>
-                        </el-menu-item-group>
-
-                        <el-menu-item-group title="Group 2">
-                            <el-menu-item index="1-3">Option 3</el-menu-item>
-                        </el-menu-item-group>
-
-                        <el-sub-menu index="1-4">
-                            <template #title>Option4</template>
-                            <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-                        </el-sub-menu>
-                    </el-sub-menu>
-                    <el-sub-menu index="2">
-                        <template #title>
-                            <el-icon><HomeFilled /></el-icon>
-                            <span>Navigator Two</span>
-                        </template>
-                        <el-menu-item-group>
-                            <template #title>Group 1</template>
-                            <el-menu-item index="2-1">Option 1</el-menu-item>
-                            <el-menu-item index="2-2">Option 2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="Group 2">
-                            <el-menu-item index="2-3">Option 3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-sub-menu index="2-4">
-                            <template #title>Option 4</template>
-                            <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
-                        </el-sub-menu>
-                    </el-sub-menu>
-                    <el-sub-menu index="3">
-                        <template #title>
-                            <el-icon><setting /></el-icon>
-                            <span>Navigator Three</span>
-                        </template>
-                        <el-menu-item-group>
-                            <template #title>Group 1</template>
-                            <el-menu-item index="3-1">Option 1</el-menu-item>
-                            <el-menu-item index="3-2">Option 2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="Group 2">
-                            <el-menu-item index="3-3">Option 3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-sub-menu index="3-4">
-                            <template #title>Option 4</template>
-                            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-                        </el-sub-menu>
-                    </el-sub-menu> -->
                 </el-menu>
             </el-scrollbar>
         </el-aside>
@@ -139,11 +46,18 @@ import { navRoutes } from "@/router.options.js"
                 </el-row>
             </el-header>
 
-            <navTabs />
+            <el-row class="nav-tab-container">
+                <navTabs class="flex-1" />
+
+                <el-row justify="center" align="middle" class="px-3">
+                    <Icon class="cursor-pointer" name="mage:reload" @click="reloadCurrentPage" />
+                    <!-- <Icon class="cursor-pointer" name="mage:chevron-down" /> -->
+                </el-row>
+            </el-row>
 
             <main>
                 <el-scrollbar class="main-content-scroll-container">
-                    <slot />
+                    <slot v-if="currentPageActive" />
                 </el-scrollbar>
             </main>
         </el-container>
@@ -216,6 +130,12 @@ import { navRoutes } from "@/router.options.js"
 .el-menu--popup .el-menu-item.is-active {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: #ffffff;
+}
+
+.nav-tab-container {
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    background: #fff;
 }
 
 /* .layout-container-demo .el-header {

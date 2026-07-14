@@ -64,11 +64,10 @@ onMounted(() => {})
     display: flex;
     align-items: center;
     gap: 8px;
-    height: 40px;
+    height: 38px;
     padding: 0 12px;
-    background: #fff;
-    border-top: 1px solid #cbd5e1;
-    border-bottom: 1px solid #cbd5e1;
+    border-right: 1px solid #cbd5e1;
+
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
