@@ -13,7 +13,29 @@ export default defineNuxtConfig({
         "@nuxtjs/tailwindcss",
         "@hypernym/nuxt-anime",
         "@nuxt/icon",
-        "@formkit/auto-animate"
+        "@formkit/auto-animate",
+        [
+            "unplugin-auto-import/nuxt",
+            {
+                dts: "./types/lodash-global.d.ts",
+                imports: [
+                    {
+                        "lodash-es": [
+                            ["cloneDeep", "lo_cloneDeep"],
+                            ["debounce", "lo_debounce"],
+                            ["throttle", "lo_throttle"],
+                            ["get", "lo_get"],
+                            ["set", "lo_set"],
+                            ["omit", "lo_omit"],
+                            ["omitBy", "lo_omitBy"],
+                            ["isUndefined", "lo_isUndefined"],
+                            ["groupBy", "lo_groupBy"],
+                            ["random", "lo_random"]
+                        ]
+                    }
+                ]
+            }
+        ]
     ],
     devServer: { port: 4060 },
     elementPlus: { icon: "", defaultLocale: "zh-cn", globalConfig: { size: "default" } },
@@ -24,7 +46,15 @@ export default defineNuxtConfig({
 
     vite: {
         optimizeDeps: {
-            include: ["@amap/amap-jsapi-loader", "@faker-js/faker", "@vue/devtools-core", "@vue/devtools-kit", "dayjs", "dayjs/plugin/*.js", "lodash-unified"]
+            include: [
+                "@amap/amap-jsapi-loader", // CJS
+                "@faker-js/faker",
+                "@vue/devtools-core",
+                "@vue/devtools-kit",
+                "dayjs", // CJS
+                "dayjs/plugin/*.js",
+                "echarts"
+            ]
         }
     }
 })

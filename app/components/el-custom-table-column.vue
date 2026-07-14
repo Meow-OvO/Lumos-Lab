@@ -1,6 +1,6 @@
 <script setup>
 import { ElTableColumn } from "element-plus"
-import { omitBy, isUndefined } from "lodash-es"
+// import { omitBy, isUndefined } from "lodash-es"
 
 defineOptions({ name: "ElCustomTableColumn", inheritAttrs: false })
 
@@ -11,8 +11,8 @@ const attrs = useAttrs()
 const slots = useSlots()
 const instance = getCurrentInstance()
 
-const isEmptyValue = value => isUndefined(value) || value === ""
-const finalAttrs = computed(() => omitBy({ ...attrs, ...props }, isEmptyValue))
+const isEmptyValue = value => lo_isUndefined(value) || value === ""
+const finalAttrs = computed(() => lo_omitBy({ ...attrs, ...props }, isEmptyValue))
 
 const eventListeners = computed(() => {
     const result = {}

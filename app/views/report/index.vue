@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import _ from "lodash"
 import employeeWorker from "./employee.worker.ts?worker"
 
 import attendanceHeatmap from "./attendanceHeatmap.vue"
@@ -60,7 +59,7 @@ const startWorker = (min: number, max: number) => {
 
     loading.value = true
 
-    totalCount.value = _.random(min, max)
+    totalCount.value = lo_random(min, max)
 
     worker.postMessage({ type: "start", total: totalCount.value })
 }
