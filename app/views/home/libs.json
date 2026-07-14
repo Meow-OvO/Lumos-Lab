@@ -87,7 +87,7 @@
         "packageName": "dayjs",
         "displayName": "Day.js 日期处理库",
         "documentUrl": "https://day.js.org/zh-CN/",
-        "icon": "logos:dayjs",
+        "icon": "",
         "color": null
     },
     {
