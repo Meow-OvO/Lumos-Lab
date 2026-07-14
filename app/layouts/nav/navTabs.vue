@@ -7,6 +7,11 @@ const navTabStore = useNavTabStore()
 const router = useRouter()
 const route = useRoute()
 
+const containerRef = ref<HTMLElement | null>(null)
+
+// 使用组合式函数
+useHorizontalScroll(containerRef, { speed: 1.5 })
+
 const tabClick = (tab: RouteLocationNormalized) => router.push(tab.path)
 
 const tabClose = (tab: RouteLocationNormalized) => {
@@ -37,6 +42,8 @@ const tabClose = (tab: RouteLocationNormalized) => {
         router.push("/home")
     }
 }
+
+onMounted(() => {})
 </script>
 
 <template>
@@ -64,14 +71,16 @@ const tabClose = (tab: RouteLocationNormalized) => {
     border-bottom: 1px solid #cbd5e1;
     overflow-x: auto;
     overflow-y: hidden;
+    scroll-behavior: smooth;
 }
 
 /* 隐藏滚动条（可选） */
 .nav-tabs-container::-webkit-scrollbar {
-    height: 2px;
+    height: 1px;
+    margin-bottom: -1px;
 }
 .nav-tabs-container::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
 </style>
