@@ -41,7 +41,14 @@ const tabClose = (tab: RouteLocationNormalized) => {
 
 <template>
     <div ref="containerRef" v-auto-animate class="nav-tabs-container">
-        <singleTab v-for="tab in navTabStore.cachedTabs" :key="tab.path" :tab="tab" @tab-click="tabClick" @tab-close="tabClose" />
+        <singleTab
+            v-for="tab in navTabStore.cachedTabs"
+            :key="tab.path"
+            :tab="tab"
+            @tab-click="tabClick"
+            @tab-close="tabClose"
+            :closeable="!(tab.path === '/home' && navTabStore.cachedTabs.length === 1)"
+        />
     </div>
 </template>
 

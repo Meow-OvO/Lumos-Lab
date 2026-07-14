@@ -10,12 +10,12 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="tab-item" :class="{ active: props.tab?.path === route.path }" @click="emits('tabClick', tab)">
+    <div class="tab-item" :class="{ active: props.tab?.path === route.path, 'tab-item-hover': props.closeable }" @click="emits('tabClick', tab)">
         <Icon v-if="props.tab?.meta.icon" :name="props.tab?.meta.icon" class="page-icon" size="14"></Icon>
 
         <span class="leading-none">{{ props.tab?.meta.title }}</span>
 
-        <Icon name="material-symbols:close-rounded" class="close-icon" @click.stop="emits('tabClose', tab)"></Icon>
+        <Icon name="material-symbols:close-rounded" class="close-icon" @click.stop="props.closeable && emits('tabClose', tab)"></Icon>
     </div>
 </template>
 
@@ -51,7 +51,7 @@ const props = defineProps({
     transition: opacity 0.3s ease;
 }
 
-.tab-item:hover .close-icon {
+.tab-item-hover:hover .close-icon {
     opacity: 1;
 }
 </style>
