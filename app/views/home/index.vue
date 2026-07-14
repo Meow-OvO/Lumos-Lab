@@ -68,7 +68,7 @@ const filteredToolsList = computed(() => {
                 <el-card>
                     <el-custom-card-title>开发文档地址</el-custom-card-title>
 
-                    <el-input v-model="libs.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
+                    <el-input v-model="libs.keyword" class="mb-4" placeholder="输入关键字筛选" clearable></el-input>
 
                     <el-scrollbar height="calc(100vh - 252px)">
                         <template v-for="(item, index) in filteredLibsList">
@@ -107,7 +107,7 @@ const filteredToolsList = computed(() => {
                 <el-card>
                     <el-custom-card-title>辅助工具地址</el-custom-card-title>
 
-                    <el-input v-model="tools.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
+                    <el-input v-model="tools.keyword" class="mb-4" placeholder="输入关键字筛选" clearable></el-input>
 
                     <el-scrollbar height="calc(100vh - 252px)">
                         <template v-for="(item, index) in filteredToolsList">
