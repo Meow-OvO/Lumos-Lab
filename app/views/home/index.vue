@@ -1,31 +1,35 @@
-<script setup type="ts">
+<script setup lang="ts">
 import libsJson from "./libs.json"
+import toolsJson from "./tools.json"
 
-const libs = reactive({
-    keyword: "",
-    list: libsJson
-})
+const env = process.env.NODE_ENV
+const config = useRuntimeConfig()
 
-const filteredList = computed(() => {
+const libs = reactive({ keyword: "", list: libsJson })
+
+const tools = reactive({ keyword: "", list: toolsJson })
+
+const filteredLibsList = computed(() => {
     const keyword = libs.keyword.trim().toLowerCase()
     if (!keyword) return libs.list
-
     return libs.list.filter(item => {
-        // 遍历对象的所有属性值
         return Object.values(item).some(value => {
-            // 只搜索字符串类型的值
-            if (typeof value === "string") {
-                return value.toLowerCase().includes(keyword)
-            }
-            // 如果是数字或其他类型，转为字符串再搜索
+            if (typeof value === "string") return value.toLowerCase().includes(keyword)
             return String(value).toLowerCase().includes(keyword)
         })
     })
 })
 
-const config = useRuntimeConfig()
-
-const env = process.env.NODE_ENV
+const filteredToolsList = computed(() => {
+    const keyword = tools.keyword.trim().toLowerCase()
+    if (!keyword) return tools.list
+    return tools.list.filter(item => {
+        return Object.values(item).some(value => {
+            if (typeof value === "string") return value.toLowerCase().includes(keyword)
+            return String(value).toLowerCase().includes(keyword)
+        })
+    })
+})
 </script>
 
 <template>
@@ -67,7 +71,7 @@ const env = process.env.NODE_ENV
                     <el-input v-model="libs.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
 
                     <el-scrollbar height="calc(100vh - 252px)">
-                        <template v-for="(item, index) in filteredList">
+                        <template v-for="(item, index) in filteredLibsList">
                             <el-divider v-if="index" :style="{ margin: '10px 0' }"></el-divider>
 
                             <el-link underline="never" :href="item.documentUrl" target="_blank">
@@ -100,24 +104,37 @@ const env = process.env.NODE_ENV
             </el-col>
 
             <el-col :span="6">
-                <el-card class="mb-3">
-                    <el-custom-card-title>已经完成的内容</el-custom-card-title>
+                <el-card>
+                    <el-custom-card-title>辅助工具地址</el-custom-card-title>
 
-                    <el-tag type="primary" effect="dark">手动路由行为</el-tag>
-                    <el-tag type="primary" effect="dark">导航layout</el-tag>
-                    <el-tag type="primary" effect="dark">github page部署</el-tag>
-                    <el-tag type="primary" effect="dark">百万级数据 Echarts</el-tag>
-                    <el-tag type="primary" effect="dark">构建时间打标</el-tag>
-                </el-card>
+                    <el-input v-model="tools.keyword" class="mb-4" placeholder="输入关键字筛选"></el-input>
 
-                <el-card class="mb-3">
-                    <el-custom-card-title>正在规划中的内容</el-custom-card-title>
+                    <el-scrollbar height="calc(100vh - 252px)">
+                        <template v-for="(item, index) in filteredToolsList">
+                            <el-divider v-if="index" :style="{ margin: '10px 0' }"></el-divider>
 
-                    <el-tag type="primary" effect="dark">NavTab标签导航</el-tag>
-                    <el-tag type="primary" effect="dark">SPA的页面手动刷新</el-tag>
-                    <el-tag type="primary" effect="dark">GIS</el-tag>
-                    <el-tag type="primary" effect="dark">国内外地图调用</el-tag>
-                    <el-tag type="primary" effect="dark">国内访问地址</el-tag>
+                            <el-link underline="never" :href="item.toolUrl" target="_blank">
+                                <div class="tools-item-grid">
+                                    <Icon
+                                        :name="item.icon"
+                                        :style="{
+                                            'grid-row': '1 / 3',
+                                            'justify-self': 'center',
+                                            'max-width': '24px',
+                                            'max-height': '24px',
+                                            width: '100%',
+                                            height: '100%',
+                                            color: item.color
+                                        }"
+                                    />
+
+                                    <span class="pl-1 font-bold text-ellipsis text-nowrap overflow-hidden" :title="item.toolName">{{ item.toolName }}</span>
+
+                                    <span class="pl-1 text-ellipsis text-nowrap overflow-hidden text-[12px]" :title="item.toolUrl">{{ item.toolUrl }}</span>
+                                </div>
+                            </el-link>
+                        </template>
+                    </el-scrollbar>
                 </el-card>
             </el-col>
 
@@ -138,7 +155,7 @@ const env = process.env.NODE_ENV
                     </div>
                 </el-card>
 
-                <el-card>
+                <el-card class="mb-3">
                     <el-custom-card-title>关于应用</el-custom-card-title>
 
                     <div class="text-[14px]">
@@ -155,13 +172,34 @@ const env = process.env.NODE_ENV
                         </p>
                     </div>
                 </el-card>
+
+                <el-card class="mb-3">
+                    <el-custom-card-title>已经完成的内容</el-custom-card-title>
+
+                    <el-tag type="primary" effect="dark">手动路由行为</el-tag>
+                    <el-tag type="primary" effect="dark">导航layout</el-tag>
+                    <el-tag type="primary" effect="dark">github page部署</el-tag>
+                    <el-tag type="primary" effect="dark">百万级数据 Echarts</el-tag>
+                    <el-tag type="primary" effect="dark">构建时间打标</el-tag>
+                </el-card>
+
+                <el-card>
+                    <el-custom-card-title>正在规划中的内容</el-custom-card-title>
+
+                    <el-tag type="primary" effect="dark">NavTab标签导航</el-tag>
+                    <el-tag type="primary" effect="dark">SPA的页面手动刷新</el-tag>
+                    <el-tag type="primary" effect="dark">GIS</el-tag>
+                    <el-tag type="primary" effect="dark">国内外地图调用</el-tag>
+                    <el-tag type="primary" effect="dark">国内访问地址</el-tag>
+                </el-card>
             </el-col>
         </el-row>
     </div>
 </template>
 
 <style scoped>
-.libs-item-grid {
+.libs-item-grid,
+.tools-item-grid {
     display: grid;
     grid-template-columns: 36px 1fr;
     grid-template-rows: 1fr 1fr;

@@ -1,0 +1,20 @@
+[
+    {
+        "toolName": "Deepseek",
+        "toolUrl": "https://chat.deepseek.com/",
+        "icon": "simple-icons:deepseek",
+        "color": "#4D6BFE"
+    },
+    {
+        "toolName": "Kimi",
+        "toolUrl": "https://www.kimi.com/",
+        "icon": "simple-icons:kimi",
+        "color": "#00D4A8"
+    },
+    {
+        "toolName": "有道翻译",
+        "toolUrl": "https://fanyi.youdao.com/#/TextTranslate",
+        "icon": "",
+        "color": "#FF7E00"
+    }
+]
