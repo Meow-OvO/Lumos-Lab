@@ -12,9 +12,6 @@ const reloadCurrentPage = () => {
     currentPageActive.value = false
     nextTick(() => (currentPageActive.value = true))
 }
-
-const navTabsRef = ref(null)
-const currentPageClose = () => navTabsRef.value?.tabClose(route)
 </script>
 
 <template>

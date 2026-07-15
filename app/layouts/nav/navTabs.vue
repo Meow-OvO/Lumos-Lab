@@ -5,7 +5,6 @@ import singleTab from "./singleTab.vue"
 
 const navTabStore = useNavTabStore()
 const router = useRouter()
-const route = useRoute()
 
 const containerRef = ref<HTMLElement | null>(null)
 
@@ -13,41 +12,7 @@ useHorizontalScroll(containerRef, { speed: 1.5 })
 
 const tabClick = (tab: RouteLocationNormalized) => router.push(tab.path)
 
-const tabClose = (tab: RouteLocationNormalized) => navTabStore.tabsRemove(tab)
-
-// const tabClose = (tab: RouteLocationNormalized) => {
-//     if (route.path !== tab.path) return navTabStore.tabsRemove(tab)
-//     if (navTabStore.cachedTabs.length <= 1) return
-
-//     const cachedTabs = navTabStore.cachedTabs
-//     const currentIndex = cachedTabs.findIndex(t => t.path === tab.path)
-
-//     if (currentIndex !== -1) {
-//         // 优先找后一个tab
-//         const nextTab = cachedTabs[currentIndex + 1]
-//         if (nextTab) {
-//             navTabStore.tabsRemove(tab)
-//             router.push(nextTab.path)
-//             return
-//         }
-
-//         // 如果没有后一个，找前一个
-//         const prevTab = cachedTabs[currentIndex - 1]
-//         if (prevTab) {
-//             navTabStore.tabsRemove(tab)
-//             router.push(prevTab.path)
-//             return
-//         }
-
-//         // 前后都没有，跳转home
-//         navTabStore.tabsRemove(tab)
-//         router.push("/home")
-//     }
-// }
-
 onMounted(() => {})
-
-defineExpose({ tabClose })
 </script>
 
 <template>
@@ -57,7 +22,7 @@ defineExpose({ tabClose })
             :key="tab.path"
             :tab="tab"
             @tab-click="tabClick"
-            @tab-close="tabClose"
+            @tab-close="navTabStore.tabsRemove"
             :closeable="!(tab.path === '/home' && navTabStore.cachedTabs.length === 1)"
         />
     </div>
