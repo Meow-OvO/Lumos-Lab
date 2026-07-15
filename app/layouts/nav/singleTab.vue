@@ -28,7 +28,8 @@ const props = defineProps({
     height: 28px;
     padding: 0 10px 0 14px;
     border-radius: 4px;
-    background-color: var(--el-color-info-light-7);
+    color: #303133;
+    background-color: var(--el-color-info-light-8);
     white-space: nowrap;
     cursor: pointer;
     transition:
