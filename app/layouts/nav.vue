@@ -1,16 +1,20 @@
-<script lang="ts" setup>
+<script setup>
 import navTabs from "./nav/navTabs.vue"
-import { navRoutes } from "@/router.options.js"
-
-const menuCollapse = ref(false)
+import { navRoutes } from "@/router.options"
 
 const navTabStore = useNavTabStore()
+const route = useRoute()
+
+const menuCollapse = ref(false)
 
 const currentPageActive = ref(true)
 const reloadCurrentPage = () => {
     currentPageActive.value = false
     nextTick(() => (currentPageActive.value = true))
 }
+
+const navTabsRef = ref(null)
+const currentPageClose = () => navTabsRef.value?.tabClose(route)
 </script>
 
 <template>
@@ -47,11 +51,50 @@ const reloadCurrentPage = () => {
             </el-header>
 
             <el-row class="nav-tab-container">
-                <navTabs class="flex-1" />
+                <navTabs ref="navTabsRef" class="flex-1" />
 
                 <el-row justify="center" align="middle" class="px-3">
-                    <Icon class="cursor-pointer" name="mage:reload" @click="reloadCurrentPage" />
-                    <!-- <Icon class="cursor-pointer" name="mage:chevron-down" /> -->
+                    <Icon class="mr-2 cursor-pointer" name="mage:reload" @click="reloadCurrentPage" />
+
+                    <el-dropdown trigger="click">
+                        <Icon class="cursor-pointer" name="mage:chevron-down" />
+
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item @click="reloadCurrentPage">
+                                    <Icon name="mdi:refresh" class="mr-1" />
+                                    <span>刷新当前</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item
+                                    :disabled="navTabStore.cachedTabs.length <= 1 && route.path === '/home'"
+                                    @click="navTabStore.tabsRemove(route)"
+                                >
+                                    <Icon name="mdi:close" class="mr-1" />
+                                    <span>关闭当前</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item :disabled="navTabStore.cachedTabs.length <= 1" divided @click="navTabStore.tabsRemoveOthers">
+                                    <Icon name="mdi:close-circle-outline" class="mr-1" />
+                                    <span>关闭其他</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item :disabled="!navTabStore.hasTabsLeft" @click="navTabStore.tabsRemoveLeft()">
+                                    <Icon name="mdi:arrow-left" class="mr-1" />
+                                    <span>关闭左侧</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item :disabled="!navTabStore.hasTabsRight" @click="navTabStore.tabsRemoveRight()">
+                                    <Icon name="mdi:arrow-right" class="mr-1" />
+                                    <span>关闭右侧</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item
+                                    :disabled="navTabStore.cachedTabs.length <= 1 && route.path === '/home'"
+                                    divided
+                                    @click="navTabStore.tabsRemoveAll()"
+                                >
+                                    <Icon name="mdi:close-circle" class="mr-1" />
+                                    <span>关闭所有</span>
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
                 </el-row>
             </el-row>
 

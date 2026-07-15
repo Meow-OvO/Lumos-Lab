@@ -1,4 +1,5 @@
 import type { RouterConfig } from "@nuxt/schema"
+import type { RouterOptions } from "vue-router"
 
 const baseRoutes = [
     { path: "/", component: () => import("@/views/index.vue") },
